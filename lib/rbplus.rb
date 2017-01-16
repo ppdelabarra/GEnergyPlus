@@ -1,57 +1,42 @@
 require_relative "rbplus/version"
 require_relative "rbplus/idd"
+require_relative "rbplus/model"
 
 module EPlusModel
 
   def self.new(version)
-    EPlusModel.new(version)
+    Model.new(version)
   end
 
+  def self.new_from_file(idf_file)
+    raise "Fatal: File '#{idf_file}' not found" if not File.file? idf_file
+    raw_file = File.readlines(idf_file)
+    file = raw_file.select{|line| not line.strip.start_with? "!"}
+    file.map!{|x| x.split("!").shift.strip} #remove comments
+    file = file.join.split(";") # Put the whole file togeter, and pack into objects
 
-
-  class EPlusModel
+    #get version
+    version = file.select{|x| x.downcase.start_with? "version"}.shift.split(",").pop
+    model = Model.new(version)
     
-    def initialize(version)
-      @idd_dir = File.join(File.dirname(File.expand_path(__FILE__)), 'idd')    
-      @version = version      
-      @idd = IDD.new("#{@idd_dir}/#{@version}.idd")
-      @objects = Hash.new
-    end
-
-    def add(object_name, inputs)
-      object = @idd[object_name.downcase] #this raises an error if the object does not exist      
-      object.check_input(inputs)  #this raises if there is an error
+    file.each{|object|
+      object = object.split(",")
+      object_name = object.shift.downcase
+      next if object_name == "version"
       
-      if object.unique then
-        if @objects.key? object_name.downcase then
-          raise "Trying to replace unique object '#{object_name}'"
-        else
-          @objects[object_name.downcase] = object.create(inputs)     
-        end
-      else
-        if @objects.key? object_name.downcase then
-          @objects[object_name.downcase] << object.create(inputs)  
-        else
-          @objects[object_name.downcase] = [object.create(inputs)]     
-        end
-      end
-    end
-
-    def print 
-      @objects.each{|key,value|    
-        if value.is_a? Array then
-          value.each{|i| i.print}
-        else    
-          value.print
-        end
-        puts ""        
+      #initialize the inputs hash
+      inputs = Hash.new
+      object_definition = model.get_definition(object_name)
+      object_definition.fields.each{|field|
+        inputs[field.name] = object.shift
+        inputs[field.name] = inputs[field.name].to_f if field.numeric?       
       }
-    end
-    
-    def [](object_name)
-        @objects[object_name]
-    end
+      
+      model.add(object_name,inputs)
+    }
 
-  end #end of class
+    return model    
+  end
+
 end #end of module
 

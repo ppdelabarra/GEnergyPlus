@@ -133,6 +133,12 @@ module EPlusModel
             raise "Trying to add inexistent object '#{object_name}'" if not @data.key? object_name         
             @data[object_name]
         end
+
+        def keys
+            @data.keys
+        end
+
+
     end  
 
     class EnergyPlusObject
@@ -167,7 +173,7 @@ module EPlusModel
                 raise "Fatal: Required field '#{field.name}' not found when creating '#{self.name}'" if field.required and not value
                 next if value == nil
                 #check that it matches value_type (Ax, Nx)
-                type_error = "Fatal: expected value for '#{field.name}' was of kind '#{ field.value_type[0].downcase == "n" ? "Numeric" : "String" }', but a '#{value.class}' was privided"
+                type_error = "Fatal: expected value for '#{field.name}' was of kind '#{ field.numeric? ? "Numeric" : "String" }', but a '#{value.class}' was privided"
                 if field.value_type[0].downcase == "n"  then
                     raise type_error if not value.is_a? Numeric
                     range_error = "Fatal: '#{field.name}' value out of range in object '#{self.name}'... expected value between #{field.minimum} and #{field.maximum}"
@@ -192,6 +198,14 @@ module EPlusModel
                 field.value = value if value
             }
             return self
+        end        
+
+        def help
+            puts "!- #{@name}"
+            puts "#{@name},"
+            @fields.each_with_index{|field,index|
+                field.help(index == @fields.length - 1)
+            }
         end
 
         def print
@@ -235,10 +249,10 @@ module EPlusModel
             comma = ","
             comma = ";" if final
             if @value then
-                puts "     #{@value.to_s}#{comma}     !-- #{@name}"
+                puts "     #{@value}#{comma}     !-- #{@name}"
             else
                 if @default then
-                    puts "     #{@default.to_s}#{comma}     !-- #{@name} (default value)"                
+                    puts "     #{@default}#{comma}     !-- #{@name} (default value)"                
                 else
                     if @required then
                         raise "Fatal: not input nor default value at '#{@name}"
@@ -248,5 +262,21 @@ module EPlusModel
                 end
             end
         end
+
+
+        def help (final)
+            comma = ","
+            comma = ";" if final     
+            default = "Default value = #{@default ?  @default : "FALSE" }"
+            required = @required ? "REQUIRED" : "NOT REQUIRED"                          
+            puts "     #{comma}     !-- #{@name}  (#{default} | #{required})"                                       
+        end
+
+        def numeric?
+            @value_type[0].downcase == "n"
+        end
+
+
+
     end
 end
