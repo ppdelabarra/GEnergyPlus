@@ -2,11 +2,19 @@ module EPlusModel
     class EnergyPlusObject
 
 
-        def add_something            
+        def set_occupancy(calculation_method, value, npeople_schedule_name, activity_schedule_name)            
             self.verify("zone") #this raises if needed
 
-            EPlusModel.model.add("zone",{"name" => "Zone number 3", "z origin" => 142})
+            # Assumes the zone does not have this
+            inputs = Hash.new
 
+            inputs["name"] = "#{self.id} - people"
+            inputs["zone or zonelist name"] = self.id
+            inputs["number of people calculation method"] = calculation_method
+            inputs["number of people schedule name"] = npeople_schedule_name
+            inputs["activity level schedule name"] = activity_schedule_name
+
+            EPlusModel.model.add("people",inputs)
         end
 
     end

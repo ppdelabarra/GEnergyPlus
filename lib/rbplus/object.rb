@@ -31,14 +31,12 @@ module EPlusModel
                 next if value == nil
                 #check that it matches value_type (Ax, Nx)
                 type_error = "Fatal: expected value for '#{field.name}' was of kind '#{ field.numeric? ? "Numeric" : "String" }', but a '#{value.class}' was privided"
-                if field.value_type[0].downcase == "n"  then
+                if field.numeric?  then
                     raise type_error if not value.is_a? Numeric
                     range_error = "Fatal: '#{field.name}' value out of range in object '#{self.name}'... expected value between #{field.minimum} and #{field.maximum}"
                     raise range_error if (field.minimum and value < field.minimum) or (field.maximum and value > field.maximum)
-                elsif field.value_type[0].downcase == "a"  then                                        
+                else                                       
                     raise type_error if not value.is_a? String
-                else
-                    warn "WARNING: Invalid value_type '#{field.value_type}' at '#{self.name}'"
                 end
             }
             return true
@@ -70,7 +68,7 @@ module EPlusModel
         def []=(field_name,value)
             @fields.each{|f|
                 next if not f.name.downcase.strip == field_name.downcase.strip
-                f.value = value                
+                f.set_value(value) # this validates inputs                
                 return true
             }
             self.print
