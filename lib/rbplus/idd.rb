@@ -97,7 +97,7 @@ module EPlusModel
                         @data[object_name].fields[-1].units_based_on_field = content
                         next                             
                     when "\\begin-extensible"
-                        #@data[object_name].fields[-1].units_based_on_field = content
+                        @data[object_name].fields[-1].begin_extensible = true
                         next                             
                     when "\\autocalculatable"
                         @data[object_name].fields[-1].autocalculatable = true

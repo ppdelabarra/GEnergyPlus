@@ -2,7 +2,7 @@ module EPlusModel
     class EnergyPlusObjectField
         attr_accessor :name, :note, :required, :type, :value_type, :default, :keys, :value
         attr_accessor :minimum, :maximum, :retaincase, :units, :object_list, :reference, :ip_units
-        attr_accessor :units_based_on_field, :autocalculatable, :autosizable, :external_list
+        attr_accessor :units_based_on_field, :autocalculatable, :autosizable, :external_list, :begin_extensible
 
         def initialize(name)
             @name = name
@@ -24,6 +24,7 @@ module EPlusModel
             @autocalculatable = false
             @autosizable = false
             @external_list = false
+            @begin_extensible = false
         end
 
 

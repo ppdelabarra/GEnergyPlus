@@ -138,13 +138,13 @@ module EPlusModel
 
         def self.lamp_data(description)            
             @@data.each{|key,value|
-                return value if key.downcase == description.downcase
+                return value if key.downcase.strip == description.downcase.strip
             }
             return false
         end 
 
-        def self.find_lamps(query)
-            @@data.keys.filter{|x| x.downcase.include? query.downcase}
+        def self.find(query)
+            @@data.keys.filter{|x| x.downcase.strip.include? query.downcase.strip}
         end
 
     end

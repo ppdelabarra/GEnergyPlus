@@ -2,7 +2,7 @@ module EPlusModel
     class EnergyPlusObject
 
 
-        def set_occupancy(calculation_method, value, npeople_schedule_name, activity_schedule_name)            
+        def set_occupancy(calculation_method, value, npeople_schedule_name, activity_schedule_name, other_options)            
             raise "Fatal:  '#{self.name}' is not a '#{name}'" if not self.verify("zone") #this raises if needed
             id = "#{self.id} - people"
             
@@ -10,7 +10,6 @@ module EPlusModel
                 EPlusModel.model.delete("people",id)                
             end     
             
-            # Assumes the zone does not have this
             inputs = Hash.new
 
             inputs["name"] = id
@@ -18,6 +17,7 @@ module EPlusModel
             inputs["number of people calculation method"] = calculation_method
             inputs["number of people schedule name"] = npeople_schedule_name
             inputs["activity level schedule name"] = activity_schedule_name
+            inputs.merge!(other_options)           
 
             case calculation_method.downcase
             when "people/area"
@@ -40,7 +40,6 @@ module EPlusModel
                 EPlusModel.model.delete("people",id)                
             end     
 
-             # Assumes the zone does not have this
             inputs = Hash.new
 
             inputs["name"] = id

@@ -106,8 +106,13 @@ module EPlusModel
         def print
             puts "!- #{@name.capitalize}"
             puts "#{@name.capitalize},"
-            @fields.each_with_index{|field,index|
-                field.print(index == @fields.length - 1)
+
+            extension_started = false
+            @fields.each_with_index{|field,index|                
+                extension_started = true if field.begin_extensible
+                final = ((index == @fields.length - 1) or ( extension_started and not field.value ))
+                field.print(final)
+                break if final
             }
         end
 
