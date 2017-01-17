@@ -5,7 +5,7 @@ require 'rbplus/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "rbplus"
-  spec.version       = RbPlus::VERSION
+  spec.version       = EPlusModel::VERSION
   spec.authors       = ["German Molina"]
   spec.email         = ["germolinal@gmail.com"]
 

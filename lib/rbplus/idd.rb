@@ -1,3 +1,7 @@
+require_relative "object"
+require_relative "field"
+
+
 module EPlusModel  
     class IDD
        
@@ -107,7 +111,7 @@ module EPlusModel
 
                     # These are object flags
                     when "\\memo"
-                        @data[object_name].memo += content
+                        @data[object_name].memo += " #{content.strip}"
                         next
                     when "\\unique-object"
                         @data[object_name].unique = true
@@ -130,8 +134,8 @@ module EPlusModel
         end                
 
         def [](object_name)
-            raise "Trying to add inexistent object '#{object_name}'" if not @data.key? object_name         
-            @data[object_name]
+            raise "Trying to add inexistent object '#{object_name}'" if not @data.key? object_name.downcase         
+            @data[object_name.downcase]
         end
 
         def keys
@@ -141,142 +145,5 @@ module EPlusModel
 
     end  
 
-    class EnergyPlusObject
-        attr_accessor :name, :fields, :unique, :memo, :min_fields, :group 
-        attr_accessor :format, :required, :fields_as_indicated, :extensible
-
-        def initialize(name)
-            @name=name
-            @fields= []
-            @unique = false
-            @memo = ""
-            @min_fields = 0
-            @group=false;
-            @format = false
-            @required = false
-            @fields_as_indicated = false
-            @extensible = false
-        end
-
-        def check_input(original_input)
-            input = Hash.new
-            #lowercase all for avoiding case errors
-            original_input.each{|key,value|
-                input[key.downcase]=value
-            }            
-#            return false if not input["name"] and input["name"].is_a? String
-
-            @fields.each{|field|                
-                value = input[field.name.downcase]
-                                
-                #check if it exists
-                raise "Fatal: Required field '#{field.name}' not found when creating '#{self.name}'" if field.required and not value
-                next if value == nil
-                #check that it matches value_type (Ax, Nx)
-                type_error = "Fatal: expected value for '#{field.name}' was of kind '#{ field.numeric? ? "Numeric" : "String" }', but a '#{value.class}' was privided"
-                if field.value_type[0].downcase == "n"  then
-                    raise type_error if not value.is_a? Numeric
-                    range_error = "Fatal: '#{field.name}' value out of range in object '#{self.name}'... expected value between #{field.minimum} and #{field.maximum}"
-                    raise range_error if (field.minimum and value < field.minimum) or (field.maximum and value > field.maximum)
-                elsif field.value_type[0].downcase == "a"  then                                        
-                    raise type_error if not value.is_a? String
-                else
-                    warn "WARNING: Invalid value_type '#{field.value_type}' at '#{self.name}'"
-                end
-            }
-            return true
-        end
-
-        def create(original_input)
-            input = Hash.new
-            #lowercase all for avoiding case errors
-            original_input.each{|key,value|
-                input[key.downcase]=value
-            }       
-            @fields.each{|field|
-                value = input[field.name.downcase]                  
-                field.value = value if value
-            }
-            return self
-        end        
-
-        def help
-            puts "!- #{@name}"
-            puts "#{@name},"
-            @fields.each_with_index{|field,index|
-                field.help(index == @fields.length - 1)
-            }
-        end
-
-        def print
-            puts "!- #{@name}"
-            puts "#{@name},"
-            @fields.each_with_index{|field,index|
-                field.print(index == @fields.length - 1)
-            }
-        end
-
-    end
-
-    class EnergyPlusObjectField
-        attr_accessor :name, :note, :required, :type, :value_type, :default, :keys, :value
-        attr_accessor :minimum, :maximum, :retaincase, :units, :object_list, :reference, :ip_units
-        attr_accessor :units_based_on_field, :autocalculatable, :autosizable, :external_list
-
-        def initialize(name)
-            @name = name
-            @note = ""
-            @required = false
-            @type = false
-            @value_type = false
-            @default = false
-            @keys = []
-            @value = nil
-            @minimum = false
-            @maximum = false
-            @retaincase = false
-            @units = false
-            @object_list = false
-            @reference = false
-            @ip_units = false
-            @units_based_on_field = false
-            @autocalculatable = false
-            @autosizable = false
-            @external_list = false
-        end
-
-        def print(final)
-            comma = ","
-            comma = ";" if final
-            if @value then
-                puts "     #{@value}#{comma}     !-- #{@name}"
-            else
-                if @default then
-                    puts "     #{@default}#{comma}     !-- #{@name} (default value)"                
-                else
-                    if @required then
-                        raise "Fatal: not input nor default value at '#{@name}"
-                    else
-                        puts "     #{comma}     !-- #{@name} (value not required)"
-                    end
-                end
-            end
-        end
-
-
-        def help (final)
-            comma = ","
-            comma = ";" if final     
-            default = "Default value = #{@default ?  @default : "FALSE" }"
-            required = @required ? "REQUIRED" : "NOT REQUIRED"                          
-            puts "     #{comma}     !-- #{@name}  (#{default} | #{required})"                                       
-        end
-
-        def numeric?
-            @value_type[0].downcase == "n"
-        end
-
-
-
-    end
+   
 end

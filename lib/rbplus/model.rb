@@ -13,20 +13,23 @@ module EPlusModel
     end
 
     def add(object_name, inputs)
-      object = @idd[object_name.downcase] #this raises an error if the object does not exist      
-      object.check_input(inputs)  #this raises if there is an error
-      
+      object_name.downcase!
+
+      object = get_definition(object_name) #this raises an error if the object does not exist      
+      object.check_input(inputs)  #this raises an error if any
+      object = object.create(inputs)      
+
       if object.unique then
-        if @objects.key? object_name.downcase then
+        if @objects.key? object_name then
           raise "Trying to replace unique object '#{object_name}'"
         else
-          @objects[object_name.downcase] = object.create(inputs)     
+          self[object_name] = object     
         end
       else
-        if @objects.key? object_name.downcase then
-          @objects[object_name.downcase] << object.create(inputs)  
-        else
-          @objects[object_name.downcase] = [object.create(inputs)]     
+        if @objects.key? object_name then                      
+          self[object_name] << object
+        else            
+          self[object_name] = [object]     
         end
       end
     end
@@ -34,7 +37,10 @@ module EPlusModel
     def print 
       @objects.each{|key,value|    
         if value.is_a? Array then
-          value.each{|i| i.print}
+          value.each{|i| 
+            i.print
+            puts ""
+          }                  
         else    
           value.print
         end
@@ -42,9 +48,16 @@ module EPlusModel
       }
     end
 
+    def help(object_name)
+      object = @idd[object_name.downcase] #this raises an error if the object does not exist       
+      object.help  
+    end
+
     def describe(object_name) 
-      object = @idd[object_name.downcase] #this raises an error if the object does not exist 
-      object.help
+      object = @idd[object_name.downcase] #this raises an error if the object does not exist       
+      puts "!- #{object_name.downcase}"
+      puts "!- #{object.memo}"
+      puts ""
     end
 
     def get_definition(object_name)
@@ -56,7 +69,23 @@ module EPlusModel
     end
     
     def [](object_name)
-        @objects[object_name]
+        @objects[object_name.downcase]
+    end
+
+    def []=(object_name,object)
+        @objects[object_name.downcase] = object
+    end
+
+    def get_object_by_id(id)
+        @objects.each{|key,object|
+            if object.is_a? Array then
+                object = object.get_object_by_id(id)
+                return object if object
+            else
+                return value if object.id and object.id.downcase == id.downcase
+            end
+        }
+        return false
     end
 
   end #end of class
