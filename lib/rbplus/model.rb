@@ -27,7 +27,7 @@ module EPlusModel
         end
       else
         if @objects.key? object_name then
-          if not self.verify_unique_id(object.name, object.id) then
+          if not self.unique_id?(object.name, object.id) then
             raise "A '#{object_name.capitalize}' called '#{object.id}' already exists"   
           end         
           self[object_name] << object
@@ -91,9 +91,22 @@ module EPlusModel
         return false
     end
 
-    def verify_unique_id(object_name,id)
+    def unique_id?(object_name,id)
       return true if self[object_name] == nil
       return false if self[object_name].map{|x| x.id.downcase}.include? id.downcase 
+      return true
+    end
+
+    def exists?(object_name,id)
+      object = self[object_name]
+      return false if object == nil
+      if object.is_a? Array then
+        object.each{|obj|
+          return true if obj.id.downcase == id.downcase
+        }
+      else
+        return true if obj.id.downcase == id.downcase
+      end
       return true
     end
 

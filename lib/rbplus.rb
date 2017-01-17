@@ -3,6 +3,8 @@ require_relative "rbplus/idd"
 require_relative "rbplus/model"
 require_relative "rbplus/array"
 require_relative "rbplus/zone"
+require_relative "rbplus/schedules"
+require_relative "rbplus/lights"
 
 
 module EPlusModel
