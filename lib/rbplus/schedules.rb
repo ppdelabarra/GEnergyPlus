@@ -54,5 +54,29 @@ module EPlusModel
 
             EPlusModel.model.add("Schedule:Compact",inputs)
         end
+
+        def add_default_office_lighting_schedule(name,early,late)
+            inputs = { "name" => name }
+            inputs["Field 1"] = "Through: 12/31"
+            inputs["Field 2"] = "Interpolate: Yes"
+            inputs["Field 3"] = "For: Weekends Holidays"
+            inputs["Field 4"] = "Until: 24:00, 0.0 "
+                        
+            inputs["Field 5"] = "For: AllOtherDays"
+            early = EPlusModel::Hours.standard_to_decimal(early)
+            late = EPlusModel::Hours.standard_to_decimal(late)
+                        
+            #before arrival
+            inputs["Field 6"] = "Until: #{EPlusModel::Hours.decimal_to_standard(early-0.5)} , 0.0"            
+            inputs["Field 7"] = "Until: #{EPlusModel::Hours.decimal_to_standard(early+0.5)} , 1.0"
+
+
+            #before leaving            
+            inputs["Field 8"] = "Until: #{EPlusModel::Hours.decimal_to_standard(late-0.5)} , 1.0"            
+            inputs["Field 9"] = "Until: #{EPlusModel::Hours.decimal_to_standard(late+0.5)} , 0.0"
+
+
+            EPlusModel.model.add("Schedule:Compact",inputs)
+        end
     end
 end
