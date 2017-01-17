@@ -118,8 +118,7 @@ module EPlusModel
         end
 
         def verify(name)
-            raise "Fatal:  '#{self.name}' is not a '#{name}'" if not name.downcase == self.name.downcase
-            return true
+            name.downcase == self.name.downcase            
         end
 
     end

@@ -11,5 +11,7 @@ model.add("zone",{"name" => "Zone number 2", "x origin" => 31})
 zone = model.get_object_by_id("zone number 2")
 
 zone.set_occupancy("people/area",2, "schedule", "activity_schedule")
+zone.set_occupancy("people/area",22, "schedule", "activity_schedule")
+
 
 model.print

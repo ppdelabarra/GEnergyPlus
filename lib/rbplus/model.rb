@@ -26,7 +26,10 @@ module EPlusModel
           self[object_name] = object     
         end
       else
-        if @objects.key? object_name then                      
+        if @objects.key? object_name then
+          if not self.verify_unique_id(object.name, object.id) then
+            raise "A '#{object_name.capitalize}' called '#{object.id}' already exists"   
+          end         
           self[object_name] << object
         else            
           self[object_name] = [object]     
@@ -86,6 +89,20 @@ module EPlusModel
             end
         }
         return false
+    end
+
+    def verify_unique_id(object_name,id)
+      return true if self[object_name] == nil
+      return false if self[object_name].map{|x| x.id.downcase}.include? id.downcase 
+      return true
+    end
+
+    def delete(object_name,id)
+      if self[object_name].is_a? Array then
+        self[object_name] = self[object_name].select{|x| not x.id.downcase == id.downcase}
+      else
+        @objects.delete(object_name)
+      end
     end
 
   end #end of class
