@@ -35,6 +35,7 @@ module EPlusModel
           self[object_name] = [object]     
         end
       end
+      return object
     end
 
     def print 

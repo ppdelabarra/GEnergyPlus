@@ -1,0 +1,236 @@
+!- Version
+Version,
+     8.6.0;     !-- Version Identifier
+
+!- Zone
+Zone,
+     Zone number 1,     !-- Name
+     0,     !-- Direction of Relative North (default value)
+     0,     !-- X Origin (default value)
+     0,     !-- Y Origin (default value)
+     0,     !-- Z Origin (default value)
+     1,     !-- Type (default value)
+     2,     !-- Multiplier
+     autocalculate,     !-- Ceiling Height (default value)
+     autocalculate,     !-- Volume (default value)
+     autocalculate,     !-- Floor Area (default value)
+     ,     !-- Zone Inside Convection Algorithm (value not required)
+     ,     !-- Zone Outside Convection Algorithm (value not required)
+     Yes;     !-- Part of Total Floor Area (default value)
+
+!- Zone
+Zone,
+     Zone number 2,     !-- Name
+     0,     !-- Direction of Relative North (default value)
+     31,     !-- X Origin
+     0,     !-- Y Origin (default value)
+     0,     !-- Z Origin (default value)
+     1,     !-- Type (default value)
+     1,     !-- Multiplier (default value)
+     autocalculate,     !-- Ceiling Height (default value)
+     autocalculate,     !-- Volume (default value)
+     autocalculate,     !-- Floor Area (default value)
+     ,     !-- Zone Inside Convection Algorithm (value not required)
+     ,     !-- Zone Outside Convection Algorithm (value not required)
+     Yes;     !-- Part of Total Floor Area (default value)
+
+
+!- Schedule:constant
+Schedule:constant,
+     Always on,     !-- Name
+     ,     !-- Schedule Type Limits Name (value not required)
+     1.0;     !-- Hourly Value
+
+!- Schedule:constant
+Schedule:constant,
+     people working,     !-- Name
+     ,     !-- Schedule Type Limits Name (value not required)
+     108;     !-- Hourly Value
+
+
+!- Schedule:compact
+Schedule:compact,
+     Occupancy schedule,     !-- Name
+     ,     !-- Schedule Type Limits Name (value not required)
+     Through: 12/31,     !-- Field 1
+     Interpolate: Yes,     !-- Field 2
+     For: Weekends Holidays,     !-- Field 3
+     Until: 24:00, 0.0 ,     !-- Field 4
+     For: AllOtherDays,     !-- Field 5
+     Until: 7:30 , 0.0,     !-- Field 6
+     Until: 8:30 , 1.0,     !-- Field 7
+     Until: 12:41 , 1.0,     !-- Field 8
+     Until: 13:30 , 0.15,     !-- Field 9
+     Until: 14:18 , 1.0,     !-- Field 10
+     Until: 17:30 , 1.0,     !-- Field 11
+     Until: 18:30 , 0.0,     !-- Field 12
+     ;     !-- Field 13 (value not required)
+
+!- Schedule:compact
+Schedule:compact,
+     Lighting schedule,     !-- Name
+     ,     !-- Schedule Type Limits Name (value not required)
+     Through: 12/31,     !-- Field 1
+     Interpolate: Yes,     !-- Field 2
+     For: Weekends Holidays,     !-- Field 3
+     Until: 24:00, 0.0 ,     !-- Field 4
+     For: AllOtherDays,     !-- Field 5
+     Until: 7:30 , 0.0,     !-- Field 6
+     Until: 8:30 , 1.0,     !-- Field 7
+     Until: 17:30 , 1.0,     !-- Field 8
+     Until: 18:30 , 0.0,     !-- Field 9
+     ;     !-- Field 10 (value not required)
+
+
+!- People
+People,
+     Zone number 1 - people,     !-- Name
+     Zone number 1,     !-- Zone or ZoneList Name
+     Occupancy schedule,     !-- Number of People Schedule Name
+     people/area,     !-- Number of People Calculation Method
+     ,     !-- Number of People (value not required)
+     0.1,     !-- People per Zone Floor Area
+     ,     !-- Zone Floor Area per Person (value not required)
+     0.3,     !-- Fraction Radiant (default value)
+     autocalculate,     !-- Sensible Heat Fraction (default value)
+     people working,     !-- Activity Level Schedule Name
+     3.82E-8,     !-- Carbon Dioxide Generation Rate (default value)
+     No,     !-- Enable ASHRAE 55 Comfort Warnings (default value)
+     ZoneAveraged,     !-- Mean Radiant Temperature Calculation Type (default value)
+     ,     !-- Surface Name/Angle Factor List Name (value not required)
+     ,     !-- Work Efficiency Schedule Name (value not required)
+     ClothingInsulationSchedule,     !-- Clothing Insulation Calculation Method (default value)
+     ,     !-- Clothing Insulation Calculation Method Schedule Name (value not required)
+     ,     !-- Clothing Insulation Schedule Name (value not required)
+     ,     !-- Air Velocity Schedule Name (value not required)
+     ,     !-- Thermal Comfort Model 1 Type (value not required)
+     ,     !-- Thermal Comfort Model 2 Type (value not required)
+     ,     !-- Thermal Comfort Model 3 Type (value not required)
+     ,     !-- Thermal Comfort Model 4 Type (value not required)
+     ;     !-- Thermal Comfort Model 5 Type (value not required)
+
+!- People
+People,
+     Zone number 2 - people,     !-- Name
+     Zone number 2,     !-- Zone or ZoneList Name
+     Occupancy schedule,     !-- Number of People Schedule Name
+     people/area,     !-- Number of People Calculation Method
+     ,     !-- Number of People (value not required)
+     0.1,     !-- People per Zone Floor Area
+     ,     !-- Zone Floor Area per Person (value not required)
+     0.3,     !-- Fraction Radiant (default value)
+     autocalculate,     !-- Sensible Heat Fraction (default value)
+     people working,     !-- Activity Level Schedule Name
+     3.82E-8,     !-- Carbon Dioxide Generation Rate (default value)
+     No,     !-- Enable ASHRAE 55 Comfort Warnings (default value)
+     ZoneAveraged,     !-- Mean Radiant Temperature Calculation Type (default value)
+     ,     !-- Surface Name/Angle Factor List Name (value not required)
+     ,     !-- Work Efficiency Schedule Name (value not required)
+     ClothingInsulationSchedule,     !-- Clothing Insulation Calculation Method (default value)
+     ,     !-- Clothing Insulation Calculation Method Schedule Name (value not required)
+     ,     !-- Clothing Insulation Schedule Name (value not required)
+     ,     !-- Air Velocity Schedule Name (value not required)
+     ,     !-- Thermal Comfort Model 1 Type (value not required)
+     ,     !-- Thermal Comfort Model 2 Type (value not required)
+     ,     !-- Thermal Comfort Model 3 Type (value not required)
+     ,     !-- Thermal Comfort Model 4 Type (value not required)
+     ;     !-- Thermal Comfort Model 5 Type (value not required)
+
+
+!- Lights
+Lights,
+     Zone number 1 - lights,     !-- Name
+     Zone number 1,     !-- Zone or ZoneList Name
+     Lighting schedule,     !-- Schedule Name
+     Watts/area,     !-- Design Level Calculation Method
+     ,     !-- Lighting Level (value not required)
+     12,     !-- Watts per Zone Floor Area
+     ,     !-- Watts per Person (value not required)
+     0.0,     !-- Return Air Fraction
+     0.27,     !-- Fraction Radiant
+     0.23,     !-- Fraction Visible
+     1.0,     !-- Fraction Replaceable (default value)
+     General,     !-- End-Use Subcategory (default value)
+     No,     !-- Return Air Fraction Calculated from Plenum Temperature (default value)
+     0.0,     !-- Return Air Fraction Function of Plenum Temperature Coefficient 1 (default value)
+     0.0;     !-- Return Air Fraction Function of Plenum Temperature Coefficient 2 (default value)
+
+!- Lights
+Lights,
+     Zone number 2 - lights,     !-- Name
+     Zone number 2,     !-- Zone or ZoneList Name
+     Lighting schedule,     !-- Schedule Name
+     Watts/area,     !-- Design Level Calculation Method
+     ,     !-- Lighting Level (value not required)
+     12,     !-- Watts per Zone Floor Area
+     ,     !-- Watts per Person (value not required)
+     0.0,     !-- Return Air Fraction
+     0.27,     !-- Fraction Radiant
+     0.23,     !-- Fraction Visible
+     1.0,     !-- Fraction Replaceable (default value)
+     General,     !-- End-Use Subcategory (default value)
+     No,     !-- Return Air Fraction Calculated from Plenum Temperature (default value)
+     0.0,     !-- Return Air Fraction Function of Plenum Temperature Coefficient 1 (default value)
+     0.0;     !-- Return Air Fraction Function of Plenum Temperature Coefficient 2 (default value)
+
+
+!- Electricequipment
+Electricequipment,
+     Zone number 1 - electricequipment,     !-- Name
+     Zone number 1,     !-- Zone or ZoneList Name
+     Occupancy schedule,     !-- Schedule Name
+     Watts/person,     !-- Design Level Calculation Method
+     ,     !-- Design Level (value not required)
+     ,     !-- Watts per Zone Floor Area (value not required)
+     100,     !-- Watts per Person
+     0,     !-- Fraction Latent (default value)
+     0,     !-- Fraction Radiant (default value)
+     0,     !-- Fraction Lost (default value)
+     General;     !-- End-Use Subcategory (default value)
+
+!- Electricequipment
+Electricequipment,
+     Zone number 2 - electricequipment,     !-- Name
+     Zone number 2,     !-- Zone or ZoneList Name
+     Occupancy schedule,     !-- Schedule Name
+     Watts/person,     !-- Design Level Calculation Method
+     ,     !-- Design Level (value not required)
+     ,     !-- Watts per Zone Floor Area (value not required)
+     100,     !-- Watts per Person
+     0,     !-- Fraction Latent (default value)
+     0,     !-- Fraction Radiant (default value)
+     0,     !-- Fraction Lost (default value)
+     General;     !-- End-Use Subcategory (default value)
+
+
+!- Zoneinfiltration:designflowrate
+Zoneinfiltration:designflowrate,
+     Zone number 1 - ZoneInfiltration:DesignFlowRate,     !-- Name
+     Zone number 1,     !-- Zone or ZoneList Name
+     Always on,     !-- Schedule Name
+     Flow/Zone,     !-- Design Flow Rate Calculation Method (default value)
+     ,     !-- Design Flow Rate (value not required)
+     ,     !-- Flow per Zone Floor Area (value not required)
+     ,     !-- Flow per Exterior Surface Area (value not required)
+     1.5,     !-- Air Changes per Hour
+     0.606,     !-- Constant Term Coefficient
+     0.03636,     !-- Temperature Term Coefficient
+     0.1177,     !-- Velocity Term Coefficient
+     0.0;     !-- Velocity Squared Term Coefficient
+
+!- Zoneinfiltration:designflowrate
+Zoneinfiltration:designflowrate,
+     Zone number 2 - ZoneInfiltration:DesignFlowRate,     !-- Name
+     Zone number 2,     !-- Zone or ZoneList Name
+     Always on,     !-- Schedule Name
+     Flow/Zone,     !-- Design Flow Rate Calculation Method (default value)
+     ,     !-- Design Flow Rate (value not required)
+     ,     !-- Flow per Zone Floor Area (value not required)
+     ,     !-- Flow per Exterior Surface Area (value not required)
+     1.5,     !-- Air Changes per Hour
+     0.606,     !-- Constant Term Coefficient
+     0.03636,     !-- Temperature Term Coefficient
+     0.1177,     !-- Velocity Term Coefficient
+     0.0;     !-- Velocity Squared Term Coefficient
+
+

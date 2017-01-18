@@ -7,4 +7,6 @@ objects = model.find(query)
 
 warn "#{objects.length} Objects found!"
 
-objects.each{|o| model.help(o) }
+objects.each{|o|     
+    model.help(o) 
+}

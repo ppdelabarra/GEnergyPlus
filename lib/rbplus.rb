@@ -6,6 +6,7 @@ require_relative "rbplus/zone"
 require_relative "rbplus/schedules"
 require_relative "rbplus/lights"
 require_relative "rbplus/occupancy"
+require_relative "rbplus/infiltration"
 
 
 module EPlusModel

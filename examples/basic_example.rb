@@ -13,18 +13,21 @@ late = "18:00"
 lunch = "13:30"
 
 ###################################
+## DEFINE SOME USEFUL SCHEDULES
+###################################
+always_on_schedule = model.add_constant_schedule("Always on", 1.0)
+
+###################################
 ## DEFINE PEOPLE
 ###################################
 
 #define activity schedule
-activity_level_schedule_name = "people working"
 activity_level = EPlusModel::People.heat_gain_per_person("Writing")
-model.add_constant_schedule(activity_level_schedule_name, activity_level)
 abort "Activity level was not found in the database" if not activity_level
+activity_level_schedule = model.add_constant_schedule("people working", activity_level)
 
 #define number of people
-occupancy_schedule_name = "Occupancy schedule"
-model.add_default_office_occupation_schedule(occupancy_schedule_name, early, late, lunch)
+occupancy_schedule = model.add_default_office_occupation_schedule("Occupancy schedule", early, late, lunch)
 
 
 ###################################
@@ -32,23 +35,29 @@ model.add_default_office_occupation_schedule(occupancy_schedule_name, early, lat
 ###################################
 
 #define light types
-lighting_schedule_name = "Lighting schedule"
 light_parameters = EPlusModel::Lights.lamp_data("Surface Mounted, T5H0")
 abort "Light data not found on database" if not light_parameters
 
 #define behavior
-model.add_default_office_lighting_schedule(lighting_schedule_name, early, late)
-
+lighting_schedule = model.add_default_office_lighting_schedule("Lighting schedule", early, late)
 
 
 ###################################
-## APPLY THIS TO ZONES
+## DEFINE INFILTRATION
+###################################
+infiltration_coefficients = EPlusModel::Infiltration.get_coefficients("DesignFlowRate:BLAST")
+abort "Infiltration Coefficients not found on database" if not infiltration_coefficients
+
+###################################
+## APPLY THESE TO ZONES
 ###################################
 
 
 model["zone"].each{|zone| 
-    zone.set_occupancy("people/area",2, occupancy_schedule_name, activity_level_schedule_name, Hash.new)
-    zone.set_lights("Watts/area",12, lighting_schedule_name, light_parameters)
+    zone.set_occupancy("people/area",0.1, occupancy_schedule, activity_level_schedule, false)
+    zone.set_lights("Watts/area",12, lighting_schedule, light_parameters)
+    zone.set_electric_equipment("Watts/person",100, occupancy_schedule, false)
+    zone.set_design_flor_rate_infiltration("AirChanges/Hour", 1.5, always_on_schedule, infiltration_coefficients)
 }
 
 
