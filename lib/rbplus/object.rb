@@ -33,7 +33,7 @@ module EPlusModel
                 type_error = "Fatal: expected value for '#{field.name}' was of kind '#{ field.numeric? ? "Numeric" : "String" }', but a '#{value.class}' was privided"
                 if field.numeric?  then
                     raise type_error if not value.is_a? Numeric
-                    range_error = "Fatal: '#{field.name}' value out of range in object '#{self.name}'... expected value between #{field.minimum} and #{field.maximum}"
+                    range_error = "Fatal: '#{field.name}' value out of range (#{value}) in object '#{self.name}'... expected value between #{field.minimum} and #{field.maximum}"
                     raise range_error if (field.minimum and value < field.minimum) or (field.maximum and value > field.maximum)
                 else                                       
                     raise type_error if not value.is_a? String

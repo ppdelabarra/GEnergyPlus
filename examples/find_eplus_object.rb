@@ -8,5 +8,6 @@ objects = model.find(query)
 warn "#{objects.length} Objects found!"
 
 objects.each{|o|     
+    puts o
     model.help(o) 
 }

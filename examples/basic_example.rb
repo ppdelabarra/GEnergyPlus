@@ -49,6 +49,19 @@ infiltration_coefficients = EPlusModel::Infiltration.get_coefficients("DesignFlo
 abort "Infiltration Coefficients not found on database" if not infiltration_coefficients
 
 ###################################
+## DEFINE CONSTRUCTIONS
+###################################
+thermal_mass_material = model.add("Material", { 
+    "name" => "Concrete", 
+    "Roughness" => "Rough",
+    "Thickness" => 0.15,
+    "Conductivity" => 1.63,
+    "Density" => 2400,
+    "Specific heat" => 750,    
+})
+internal_mass_construction = model.add_construction("Internal Mass Construction", [thermal_mass_material])
+
+###################################
 ## APPLY THESE TO ZONES
 ###################################
 
@@ -57,9 +70,12 @@ model["zone"].each{|zone|
     zone.set_occupancy("people/area",0.1, occupancy_schedule, activity_level_schedule, false)
     zone.set_lights("Watts/area",12, lighting_schedule, light_parameters)
     zone.set_electric_equipment("Watts/person",100, occupancy_schedule, false)
-    zone.set_design_flor_rate_infiltration("AirChanges/Hour", 1.5, always_on_schedule, infiltration_coefficients)
+    zone.set_design_flow_rate_infiltration("AirChanges/Hour", 1.5, always_on_schedule, infiltration_coefficients)
+    zone.set_design_flow_rate_ventilation("Flow/Person", 0.02, lighting_schedule, false)    
+    zone.set_thermal_mass(internal_mass_construction,2.0, false)
+    zone.set_thermal_mass(internal_mass_construction,2.0, {"name" => "another thermal mass"})
 }
 
 
 
-model.print
+model.print # 

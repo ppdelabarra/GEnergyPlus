@@ -4,12 +4,52 @@ module EPlusModel
     
     def initialize(version)
       @idd_dir = File.join(File.dirname(File.expand_path(__FILE__)), 'idd_files')    
-      @version = version      
+      @version = version.strip
       raise "Fatal: Wrong EnergyPlus version... IDD file not found or not supported" if not File.file? "#{@idd_dir}/#{@version}.idd"
       @idd = IDD.new("#{@idd_dir}/#{@version}.idd")
       @objects = Hash.new
 
       self.add("version",{"version identifier" => version})
+    end
+
+
+    def add_from_file(idf_file, object_name_array, other_options )    
+      raise "Fatal: File '#{idf_file}' not found" if not File.file? idf_file
+      object_name_array.map!{|x| x.downcase} if object_name_array
+      other_options = Hash.new if not other_options
+
+      # Default options
+      force_required = false
+
+      # process other_options
+      force_required = other_options["force required"] if other_options.key? "force required"
+
+      #pre process file
+      file = EPlusModel.pre_process_file(idf_file)
+      
+      #Add objects in file to model     
+      file.each{|object|
+        object = object.split(",")
+        object_name = object.shift.downcase      
+        next if object_name == "version"
+        
+        object_definition = self.get_definition(object_name)
+        
+        next if (object_name_array and not object_name_array.include? object_name) and  # and this thing is not in the list
+                not (object_definition.required and force_required) 
+
+        #initialize the inputs hash
+        inputs = Hash.new
+        
+        object.each_with_index{|value,index|
+            next if value.strip == ""
+            field = object_definition.fields[index]          
+            inputs[field.name] = value      
+            inputs[field.name] = inputs[field.name].to_f if field.numeric?   
+        } 
+        self.add(object_name,inputs)
+      }
+      return self    
     end
 
     def add(object_name, inputs)

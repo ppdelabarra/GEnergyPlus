@@ -82,6 +82,34 @@ Schedule:compact,
      ;     !-- Field 10 (value not required)
 
 
+!- Material
+Material,
+     Concrete,     !-- Name
+     Rough,     !-- Roughness
+     0.15,     !-- Thickness
+     1.63,     !-- Conductivity
+     2400,     !-- Density
+     750,     !-- Specific Heat
+     .9,     !-- Thermal Absorptance (default value)
+     .7,     !-- Solar Absorptance (default value)
+     .7;     !-- Visible Absorptance (default value)
+
+
+!- Construction
+Construction,
+     Internal Mass Construction,     !-- Name
+     Concrete,     !-- Outside Layer
+     ,     !-- Layer 2 (value not required)
+     ,     !-- Layer 3 (value not required)
+     ,     !-- Layer 4 (value not required)
+     ,     !-- Layer 5 (value not required)
+     ,     !-- Layer 6 (value not required)
+     ,     !-- Layer 7 (value not required)
+     ,     !-- Layer 8 (value not required)
+     ,     !-- Layer 9 (value not required)
+     ;     !-- Layer 10 (value not required)
+
+
 !- People
 People,
      Zone number 1 - people,     !-- Name
@@ -208,7 +236,7 @@ Zoneinfiltration:designflowrate,
      Zone number 1 - ZoneInfiltration:DesignFlowRate,     !-- Name
      Zone number 1,     !-- Zone or ZoneList Name
      Always on,     !-- Schedule Name
-     Flow/Zone,     !-- Design Flow Rate Calculation Method (default value)
+     AirChanges/Hour,     !-- Design Flow Rate Calculation Method
      ,     !-- Design Flow Rate (value not required)
      ,     !-- Flow per Zone Floor Area (value not required)
      ,     !-- Flow per Exterior Surface Area (value not required)
@@ -223,7 +251,7 @@ Zoneinfiltration:designflowrate,
      Zone number 2 - ZoneInfiltration:DesignFlowRate,     !-- Name
      Zone number 2,     !-- Zone or ZoneList Name
      Always on,     !-- Schedule Name
-     Flow/Zone,     !-- Design Flow Rate Calculation Method (default value)
+     AirChanges/Hour,     !-- Design Flow Rate Calculation Method
      ,     !-- Design Flow Rate (value not required)
      ,     !-- Flow per Zone Floor Area (value not required)
      ,     !-- Flow per Exterior Surface Area (value not required)
@@ -232,5 +260,86 @@ Zoneinfiltration:designflowrate,
      0.03636,     !-- Temperature Term Coefficient
      0.1177,     !-- Velocity Term Coefficient
      0.0;     !-- Velocity Squared Term Coefficient
+
+
+!- Zoneventilation:designflowrate
+Zoneventilation:designflowrate,
+     Zone number 1 - ZoneVentilation:DesignFlowRate,     !-- Name
+     Zone number 1,     !-- Zone or ZoneList Name
+     Lighting schedule,     !-- Schedule Name
+     Flow/Person,     !-- Design Flow Rate Calculation Method
+     ,     !-- Design Flow Rate (value not required)
+     ,     !-- Flow Rate per Zone Floor Area (value not required)
+     0.02,     !-- Flow Rate per Person
+     ,     !-- Air Changes per Hour (value not required)
+     Natural,     !-- Ventilation Type (default value)
+     0,     !-- Fan Pressure Rise (default value)
+     1,     !-- Fan Total Efficiency (default value)
+     1,     !-- Constant Term Coefficient (default value)
+     0,     !-- Temperature Term Coefficient (default value)
+     0,     !-- Velocity Term Coefficient (default value)
+     0,     !-- Velocity Squared Term Coefficient (default value)
+     -100,     !-- Minimum Indoor Temperature (default value)
+     ,     !-- Minimum Indoor Temperature Schedule Name (value not required)
+     100,     !-- Maximum Indoor Temperature (default value)
+     ,     !-- Maximum Indoor Temperature Schedule Name (value not required)
+     -100,     !-- Delta Temperature (default value)
+     ,     !-- Delta Temperature Schedule Name (value not required)
+     -100,     !-- Minimum Outdoor Temperature (default value)
+     ,     !-- Minimum Outdoor Temperature Schedule Name (value not required)
+     100,     !-- Maximum Outdoor Temperature (default value)
+     ,     !-- Maximum Outdoor Temperature Schedule Name (value not required)
+     40;     !-- Maximum Wind Speed (default value)
+
+!- Zoneventilation:designflowrate
+Zoneventilation:designflowrate,
+     Zone number 2 - ZoneVentilation:DesignFlowRate,     !-- Name
+     Zone number 2,     !-- Zone or ZoneList Name
+     Lighting schedule,     !-- Schedule Name
+     Flow/Person,     !-- Design Flow Rate Calculation Method
+     ,     !-- Design Flow Rate (value not required)
+     ,     !-- Flow Rate per Zone Floor Area (value not required)
+     0.02,     !-- Flow Rate per Person
+     ,     !-- Air Changes per Hour (value not required)
+     Natural,     !-- Ventilation Type (default value)
+     0,     !-- Fan Pressure Rise (default value)
+     1,     !-- Fan Total Efficiency (default value)
+     1,     !-- Constant Term Coefficient (default value)
+     0,     !-- Temperature Term Coefficient (default value)
+     0,     !-- Velocity Term Coefficient (default value)
+     0,     !-- Velocity Squared Term Coefficient (default value)
+     -100,     !-- Minimum Indoor Temperature (default value)
+     ,     !-- Minimum Indoor Temperature Schedule Name (value not required)
+     100,     !-- Maximum Indoor Temperature (default value)
+     ,     !-- Maximum Indoor Temperature Schedule Name (value not required)
+     -100,     !-- Delta Temperature (default value)
+     ,     !-- Delta Temperature Schedule Name (value not required)
+     -100,     !-- Minimum Outdoor Temperature (default value)
+     ,     !-- Minimum Outdoor Temperature Schedule Name (value not required)
+     100,     !-- Maximum Outdoor Temperature (default value)
+     ,     !-- Maximum Outdoor Temperature Schedule Name (value not required)
+     40;     !-- Maximum Wind Speed (default value)
+
+
+!- Internalmass
+Internalmass,
+     Zone number 1 - InternalMass,     !-- Name
+     Internal Mass Construction,     !-- Construction Name
+     Zone number 1,     !-- Zone Name
+     2.0;     !-- Surface Area
+
+!- Internalmass
+Internalmass,
+     Zone number 2 - InternalMass,     !-- Name
+     Internal Mass Construction,     !-- Construction Name
+     Zone number 2,     !-- Zone Name
+     2.0;     !-- Surface Area
+
+!- Internalmass
+Internalmass,
+     another thermal mass,     !-- Name
+     Internal Mass Construction,     !-- Construction Name
+     Zone number 2,     !-- Zone Name
+     2.0;     !-- Surface Area
 
 

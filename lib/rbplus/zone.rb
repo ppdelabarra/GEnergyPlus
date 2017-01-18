@@ -84,13 +84,14 @@ module EPlusModel
             EPlusModel.model.add("electricequipment",inputs)            
         end
 
-        def set_design_flor_rate_infiltration(calculation_method, value, schedule, other_options)
+        def set_design_flow_rate_infiltration(calculation_method, value, schedule, other_options)
             raise "Fatal:  '#{self.name}' is not a Zone" if not self.verify("zone") #this raises if needed     
 
             inputs = adopt_other_options("ZoneInfiltration:DesignFlowRate",other_options)
 
             inputs["zone or zonelist name"] = self.id              
             inputs["schedule name"] = schedule.id
+            inputs["design flow rate calculation method"] = calculation_method                   
 
             case calculation_method.downcase
             when "flow/zone"
@@ -109,6 +110,40 @@ module EPlusModel
             EPlusModel.model.add("ZoneInfiltration:DesignFlowRate",inputs) 
         end
 
+        def set_design_flow_rate_ventilation(calculation_method, value, schedule, other_options)
+            raise "Fatal:  '#{self.name}' is not a Zone" if not self.verify("zone") #this raises if needed     
+
+            inputs = adopt_other_options("ZoneVentilation:DesignFlowRate",other_options)
+
+            inputs["zone or zonelist name"] = self.id              
+            inputs["schedule name"] = schedule.id
+            inputs["design flow rate calculation method"] = calculation_method                   
+
+            case calculation_method.downcase
+            when "flow/zone"
+                inputs["design flow rate"] = value
+            when "flow/area"
+                inputs["flow rate per zone floor area"] = value 
+            when "flow/person"
+                inputs["Flow Rate per Person"] = value 
+            when "airchanges/hour"
+                inputs["air changes per hour"] = value
+            else
+                raise "Incorrect calculation method '#{calculation_method}' for ZoneInfiltration:DesignFlowRate calculation"
+            end
+            EPlusModel.model.add("ZoneVentilation:DesignFlowRate",inputs) 
+        end
+
+        def set_thermal_mass(construction,area, other_options)
+            raise "Fatal:  '#{self.name}' is not a Zone" if not self.verify("zone") #this raises if needed     
+
+            inputs = adopt_other_options("InternalMass",other_options)
+            inputs["zone name"] = self.id       
+            inputs["Surface Area"] = area
+            raise "Fatal: '#{construction.id}' is not a Construction... it is a '#{construction.name}'" if not construction.verify("construction")
+            inputs["Construction Name"] = construction.id
+            EPlusModel.model.add("InternalMass",inputs)
+        end
 
 
         
