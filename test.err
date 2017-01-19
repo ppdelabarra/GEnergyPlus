@@ -1,0 +1,433 @@
+Program Version,EnergyPlus, Version 8.6.0-198c6a3cff, YMD=2017.01.19 11:42,IDD_Version 8.6.0
+   ** Warning ** No Timestep object found.  Number of TimeSteps in Hour defaulted to 4.
+   ** Warning ** No reporting elements have been requested. No simulation results produced.
+   **   ~~~   ** ...Review requirements such as "Output:Table:SummaryReports", "Output:Table:Monthly", "Output:Variable", "Output:Meter" and others.
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 313", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 44", invalid Construction Name="EXTSLABCARPET 4IN CLIMATEZONE 1-8".
+   ** Warning ** GetHTSurfaceData: Surfaces with interface to Ground found but no "Ground Temperatures" were input.
+   **   ~~~   ** Found first in surface=SURFACE 44
+   **   ~~~   ** Defaults, constant throughout the year of (18.0) will be used.
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 45", invalid Construction Name="ASHRAE 189.1-2009 EXTROOF IEAD CLIMATEZONE 2-5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 46", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 47", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 48", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 49", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 117", invalid Construction Name="EXTSLABCARPET 4IN CLIMATEZONE 1-8".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 118", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 119", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 120", invalid Construction Name="ASHRAE 189.1-2009 EXTROOF IEAD CLIMATEZONE 2-5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 121", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 122", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 232", invalid Construction Name="EXTSLABCARPET 4IN CLIMATEZONE 1-8".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 233", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 234", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5 REVERSED".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 235", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 236", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 237", invalid Construction Name="ASHRAE 189.1-2009 EXTROOF IEAD CLIMATEZONE 2-5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 68", invalid Construction Name="EXTSLABCARPET 4IN CLIMATEZONE 1-8".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 69", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 70", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 71", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 72", invalid Construction Name="ASHRAE 189.1-2009 EXTROOF IEAD CLIMATEZONE 2-5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 73", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5 REVERSED".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 166", invalid Construction Name="EXTSLABCARPET 4IN CLIMATEZONE 1-8".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 167", invalid Construction Name="ASHRAE 189.1-2009 EXTROOF IEAD CLIMATEZONE 2-5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 168", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 169", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 170", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 171", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 26", invalid Construction Name="EXTSLABCARPET 4IN CLIMATEZONE 1-8".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 27", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 28", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 29", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 30", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 31", invalid Construction Name="ASHRAE 189.1-2009 EXTROOF IEAD CLIMATEZONE 2-5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 20", invalid Construction Name="EXTSLABCARPET 4IN CLIMATEZONE 1-8".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 21", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 22", invalid Construction Name="ASHRAE 189.1-2009 EXTROOF IEAD CLIMATEZONE 2-5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 23", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 24", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 25", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 306", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 100", invalid Construction Name="ASHRAE 189.1-2009 EXTROOF IEAD CLIMATEZONE 2-5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 101", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 102", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 103", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 104", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 99", invalid Construction Name="EXTSLABCARPET 4IN CLIMATEZONE 1-8".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 1", invalid Construction Name="EXTSLABCARPET 4IN CLIMATEZONE 1-8".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 13", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 2", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 3", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 307", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 4", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 5", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 6", invalid Construction Name="ASHRAE 189.1-2009 EXTROOF IEAD CLIMATEZONE 2-5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 154", invalid Construction Name="EXTSLABCARPET 4IN CLIMATEZONE 1-8".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 155", invalid Construction Name="ASHRAE 189.1-2009 EXTROOF IEAD CLIMATEZONE 2-5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 156", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 157", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 158", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 159", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 123", invalid Construction Name="EXTSLABCARPET 4IN CLIMATEZONE 1-8".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 124", invalid Construction Name="ASHRAE 189.1-2009 EXTROOF IEAD CLIMATEZONE 2-5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 125", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 126", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 127", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 128", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 38", invalid Construction Name="EXTSLABCARPET 4IN CLIMATEZONE 1-8".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 39", invalid Construction Name="ASHRAE 189.1-2009 EXTROOF IEAD CLIMATEZONE 2-5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 40", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 41", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 42", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 43", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 202", invalid Construction Name="EXTSLABCARPET 4IN CLIMATEZONE 1-8".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 203", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 204", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 205", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 206", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 207", invalid Construction Name="ASHRAE 189.1-2009 EXTROOF IEAD CLIMATEZONE 2-5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 184", invalid Construction Name="EXTSLABCARPET 4IN CLIMATEZONE 1-8".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 185", invalid Construction Name="ASHRAE 189.1-2009 EXTROOF IEAD CLIMATEZONE 2-5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 186", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 187", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 188", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 189", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 14", invalid Construction Name="EXTSLABCARPET 4IN CLIMATEZONE 1-8".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 15", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 16", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 17", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 18", invalid Construction Name="ASHRAE 189.1-2009 EXTROOF IEAD CLIMATEZONE 2-5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 19", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 208", invalid Construction Name="EXTSLABCARPET 4IN CLIMATEZONE 1-8".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 209", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 210", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 211", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 212", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 213", invalid Construction Name="ASHRAE 189.1-2009 EXTROOF IEAD CLIMATEZONE 2-5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 319", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5 REVERSED".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 320", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5 REVERSED".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 321", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5 REVERSED".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 196", invalid Construction Name="EXTSLABCARPET 4IN CLIMATEZONE 1-8".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 197", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 198", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5 REVERSED".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 199", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 200", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 201", invalid Construction Name="ASHRAE 189.1-2009 EXTROOF IEAD CLIMATEZONE 2-5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 317", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5 REVERSED".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 51", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 52", invalid Construction Name="ASHRAE 189.1-2009 EXTROOF IEAD CLIMATEZONE 2-5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 53", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 54", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 55", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 178", invalid Construction Name="EXTSLABCARPET 4IN CLIMATEZONE 1-8".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 179", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 180", invalid Construction Name="ASHRAE 189.1-2009 EXTROOF IEAD CLIMATEZONE 2-5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 181", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 182", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 183", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 311", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 92", invalid Construction Name="EXTSLABCARPET 4IN CLIMATEZONE 1-8".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 93", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5 REVERSED".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 94", invalid Construction Name="ASHRAE 189.1-2009 EXTROOF IEAD CLIMATEZONE 2-5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 95", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 96", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 97", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 98", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 74", invalid Construction Name="EXTSLABCARPET 4IN CLIMATEZONE 1-8".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 75", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 76", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 77", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5 REVERSED".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 78", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 79", invalid Construction Name="ASHRAE 189.1-2009 EXTROOF IEAD CLIMATEZONE 2-5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 105", invalid Construction Name="EXTSLABCARPET 4IN CLIMATEZONE 1-8".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 106", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 107", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 108", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 109", invalid Construction Name="ASHRAE 189.1-2009 EXTROOF IEAD CLIMATEZONE 2-5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 110", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 310", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 80", invalid Construction Name="EXTSLABCARPET 4IN CLIMATEZONE 1-8".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 81", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 82", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 83", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 84", invalid Construction Name="ASHRAE 189.1-2009 EXTROOF IEAD CLIMATEZONE 2-5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 85", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 32", invalid Construction Name="EXTSLABCARPET 4IN CLIMATEZONE 1-8".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 33", invalid Construction Name="ASHRAE 189.1-2009 EXTROOF IEAD CLIMATEZONE 2-5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 34", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 35", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 36", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 37", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 129", invalid Construction Name="EXTSLABCARPET 4IN CLIMATEZONE 1-8".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 130", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 131", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 132", invalid Construction Name="ASHRAE 189.1-2009 EXTROOF IEAD CLIMATEZONE 2-5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 133", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 134", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 309", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 147", invalid Construction Name="EXTSLABCARPET 4IN CLIMATEZONE 1-8".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 148", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 149", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 150", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 151", invalid Construction Name="ASHRAE 189.1-2009 EXTROOF IEAD CLIMATEZONE 2-5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 152", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 153", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 308", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 238", invalid Construction Name="EXTSLABCARPET 4IN CLIMATEZONE 1-8".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 239", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 240", invalid Construction Name="ASHRAE 189.1-2009 EXTROOF IEAD CLIMATEZONE 2-5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 241", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 242", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 243", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 135", invalid Construction Name="EXTSLABCARPET 4IN CLIMATEZONE 1-8".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 136", invalid Construction Name="ASHRAE 189.1-2009 EXTROOF IEAD CLIMATEZONE 2-5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 137", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 138", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 139", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 140", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 220", invalid Construction Name="EXTSLABCARPET 4IN CLIMATEZONE 1-8".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 221", invalid Construction Name="ASHRAE 189.1-2009 EXTROOF IEAD CLIMATEZONE 2-5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 222", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 223", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 224", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 225", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 141", invalid Construction Name="EXTSLABCARPET 4IN CLIMATEZONE 1-8".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 142", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 143", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 144", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 145", invalid Construction Name="ASHRAE 189.1-2009 EXTROOF IEAD CLIMATEZONE 2-5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 146", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 226", invalid Construction Name="EXTSLABCARPET 4IN CLIMATEZONE 1-8".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 227", invalid Construction Name="ASHRAE 189.1-2009 EXTROOF IEAD CLIMATEZONE 2-5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 228", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 229", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 230", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 231", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 244", invalid Construction Name="EXTSLABCARPET 4IN CLIMATEZONE 1-8".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 245", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 246", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 247", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 248", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 249", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 251", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 252", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 253", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 254", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 255", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 256", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 257", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 258", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 259", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 260", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 261", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 262", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 263", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 264", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 265", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 266", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 267", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 268", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 269", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 270", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5 REVERSED".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 271", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 272", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 273", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 274", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 275", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 276", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5 REVERSED".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 277", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 278", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 279", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 280", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 281", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 282", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 283", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 284", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 285", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 286", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 287", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 288", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 289", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 290", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 291", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 292", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 293", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 294", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 295", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 296", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 297", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 298", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 300", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 301", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 303", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 304", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 305", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 190", invalid Construction Name="EXTSLABCARPET 4IN CLIMATEZONE 1-8".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 191", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 192", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 193", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 194", invalid Construction Name="ASHRAE 189.1-2009 EXTROOF IEAD CLIMATEZONE 2-5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 195", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 314", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 315", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5 REVERSED".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 318", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5 REVERSED".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 322", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5 REVERSED".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 160", invalid Construction Name="EXTSLABCARPET 4IN CLIMATEZONE 1-8".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 161", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 162", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 163", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 164", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 165", invalid Construction Name="ASHRAE 189.1-2009 EXTROOF IEAD CLIMATEZONE 2-5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 312", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 323", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 50", invalid Construction Name="EXTSLABCARPET 4IN CLIMATEZONE 1-8".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 56", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 57", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5 REVERSED".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 58", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 59", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 60", invalid Construction Name="ASHRAE 189.1-2009 EXTROOF IEAD CLIMATEZONE 2-5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 61", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 86", invalid Construction Name="EXTSLABCARPET 4IN CLIMATEZONE 1-8".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 87", invalid Construction Name="ASHRAE 189.1-2009 EXTROOF IEAD CLIMATEZONE 2-5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 88", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 89", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 90", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5 REVERSED".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 91", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 172", invalid Construction Name="EXTSLABCARPET 4IN CLIMATEZONE 1-8".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 173", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 174", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 175", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 176", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 177", invalid Construction Name="ASHRAE 189.1-2009 EXTROOF IEAD CLIMATEZONE 2-5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 214", invalid Construction Name="EXTSLABCARPET 4IN CLIMATEZONE 1-8".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 215", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 216", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 217", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 218", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5 REVERSED".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 219", invalid Construction Name="ASHRAE 189.1-2009 EXTROOF IEAD CLIMATEZONE 2-5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 316", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5 REVERSED".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 111", invalid Construction Name="EXTSLABCARPET 4IN CLIMATEZONE 1-8".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 112", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 113", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 114", invalid Construction Name="ASHRAE 189.1-2009 EXTROOF IEAD CLIMATEZONE 2-5".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 115", invalid Construction Name="INTERIOR WALL".
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 116", invalid Construction Name="ASHRAE 189.1-2009 EXTWALL MASS CLIMATEZONE 5".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 103", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 70", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 9", invalid Construction Name="ASHRAE 189.1-2009 EXTWINDOW CLIMATEZONE 4-5".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 25", invalid Construction Name="ASHRAE 189.1-2009 EXTWINDOW CLIMATEZONE 4-5".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 90", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 15", invalid Construction Name="ASHRAE 189.1-2009 EXTWINDOW CLIMATEZONE 4-5".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 99", invalid Construction Name="ASHRAE 189.1-2009 EXTWINDOW CLIMATEZONE 4-5".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 35", invalid Construction Name="ASHRAE 189.1-2009 EXTWINDOW CLIMATEZONE 4-5".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 81", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 6", invalid Construction Name="ASHRAE 189.1-2009 EXTWINDOW CLIMATEZONE 4-5".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 74", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 75", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 5", invalid Construction Name="ASHRAE 189.1-2009 EXTWINDOW CLIMATEZONE 4-5".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 76", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 22", invalid Construction Name="ASHRAE 189.1-2009 EXTWINDOW CLIMATEZONE 4-5".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 94", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 3", invalid Construction Name="ASHRAE 189.1-2009 EXTWINDOW CLIMATEZONE 4-5".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 1", invalid Construction Name="ASHRAE 189.1-2009 EXTWINDOW CLIMATEZONE 4-5".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 2", invalid Construction Name="ASHRAE 189.1-2009 EXTWINDOW CLIMATEZONE 4-5".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 78", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 83", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 33", invalid Construction Name="ASHRAE 189.1-2009 EXTWINDOW CLIMATEZONE 4-5".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 89", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 26", invalid Construction Name="ASHRAE 189.1-2009 EXTWINDOW CLIMATEZONE 4-5".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 8", invalid Construction Name="ASHRAE 189.1-2009 EXTWINDOW CLIMATEZONE 4-5".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 71", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 77", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 4", invalid Construction Name="ASHRAE 189.1-2009 EXTWINDOW CLIMATEZONE 4-5".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 10", invalid Construction Name="ASHRAE 189.1-2009 EXTWINDOW CLIMATEZONE 4-5".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 102", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 79", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 37", invalid Construction Name="ASHRAE 189.1-2009 EXTWINDOW CLIMATEZONE 4-5".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 95", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 19", invalid Construction Name="ASHRAE 189.1-2009 EXTWINDOW CLIMATEZONE 4-5".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 21", invalid Construction Name="ASHRAE 189.1-2009 EXTWINDOW CLIMATEZONE 4-5".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 20", invalid Construction Name="ASHRAE 189.1-2009 EXTWINDOW CLIMATEZONE 4-5".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 98", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 16", invalid Construction Name="ASHRAE 189.1-2009 EXTWINDOW CLIMATEZONE 4-5".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 92", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 93", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 23", invalid Construction Name="ASHRAE 189.1-2009 EXTWINDOW CLIMATEZONE 4-5".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 17", invalid Construction Name="ASHRAE 189.1-2009 EXTWINDOW CLIMATEZONE 4-5".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 97", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 7", invalid Construction Name="ASHRAE 189.1-2009 EXTWINDOW CLIMATEZONE 4-5".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 73", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 27", invalid Construction Name="ASHRAE 189.1-2009 EXTWINDOW CLIMATEZONE 4-5".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 88", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 87", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 32", invalid Construction Name="ASHRAE 189.1-2009 EXTWINDOW CLIMATEZONE 4-5".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 31", invalid Construction Name="ASHRAE 189.1-2009 EXTWINDOW CLIMATEZONE 4-5".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 30", invalid Construction Name="ASHRAE 189.1-2009 EXTWINDOW CLIMATEZONE 4-5".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 84", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 28", invalid Construction Name="ASHRAE 189.1-2009 EXTWINDOW CLIMATEZONE 4-5".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 86", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 85", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 29", invalid Construction Name="ASHRAE 189.1-2009 EXTWINDOW CLIMATEZONE 4-5".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 72", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 47", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 40", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 38", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 44", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 42", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 39", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 41", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 43", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 45", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 46", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 53", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 63", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 64", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 69", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 66", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 67", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 61", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 49", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 55", invalid Construction Name="ASHRAE 189.1-2009 EXTWINDOW CLIMATEZONE 4-5".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 60", invalid Construction Name="ASHRAE 189.1-2009 EXTWINDOW CLIMATEZONE 4-5".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 62", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 65", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 56", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 68", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 50", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 48", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 57", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 51", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 52", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 58", invalid Construction Name="ASHRAE 189.1-2009 EXTWINDOW CLIMATEZONE 4-5".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 54", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 34", invalid Construction Name="ASHRAE 189.1-2009 EXTWINDOW CLIMATEZONE 4-5".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 82", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 11", invalid Construction Name="ASHRAE 189.1-2009 EXTWINDOW CLIMATEZONE 4-5".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 101", invalid Construction Name="ASHRAE 189.1-2009 EXTWINDOW CLIMATEZONE 4-5".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 13", invalid Construction Name="ASHRAE 189.1-2009 EXTWINDOW CLIMATEZONE 4-5".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 12", invalid Construction Name="ASHRAE 189.1-2009 EXTWINDOW CLIMATEZONE 4-5".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 18", invalid Construction Name="ASHRAE 189.1-2009 EXTWINDOW CLIMATEZONE 4-5".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 96", invalid Construction Name="ASHRAE 189.1-2009 EXTWINDOW CLIMATEZONE 4-5".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 36", invalid Construction Name="ASHRAE 189.1-2009 EXTWINDOW CLIMATEZONE 4-5".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 80", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 91", invalid Construction Name="INTERIOR WINDOW".
+   ** Severe  ** FenestrationSurface:Detailed="SUB SURFACE 24", invalid Construction Name="ASHRAE 189.1-2009 EXTWINDOW CLIMATEZONE 4-5".
+   ** Severe  ** GetSurfaceData: Zone has no surfaces, Zone=THERMAL ZONE 7 THERMAL ZONE
+   **  Fatal  ** GetSurfaceData: Errors discovered, program terminates.
+   ...Summary of Errors that led to program termination:
+   ..... Reference severe error count=409
+   ..... Last severe error=GetSurfaceData: Zone has no surfaces, Zone=THERMAL ZONE 7 THERMAL ZONE
+   ************* Warning:  Node connection errors not checked - most system input has not been read (see previous warning).
+   ************* Fatal error -- final processing.  Program exited before simulations began.  See previous error messages.
+   *************
+   ************* ===== Final Error Summary =====
+   ************* The following error categories occurred.  Consider correcting or noting.
+   ************* No Reporting Elements requested
+   ************* ..No Reporting elements have been requested. You will see no output values from your run.
+   ************* ..Add Output:Variable, Output:Meter, Output:Table:SummaryReports, Output:Table:Monthly, Output:Table:TimeBins
+   ************* ..objects to your input file to receive output values from the simulation.
+   *************
+   ************* EnergyPlus Warmup Error Summary. During Warmup: 0 Warning; 0 Severe Errors.
+   ************* EnergyPlus Sizing Error Summary. During Sizing: 0 Warning; 0 Severe Errors.
+   ************* EnergyPlus Terminated--Fatal Error Detected. 3 Warning; 409 Severe Errors; Elapsed Time=00hr 00min  0.40sec

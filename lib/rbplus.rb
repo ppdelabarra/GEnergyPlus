@@ -25,6 +25,15 @@ module EPlusModel
 
   def self.new(version)
     @@model = Model.new(version)
+    @@model.add("Building",Hash.new) #Include the default building
+    @@model.add("RunPeriod",{
+      "Name" => "default_period",
+      "Begin Month" => 1,
+      "Begin day of month" => 1,
+      "End Month" => 12,
+      "End day of month" => 31
+    }) #Include the default building
+    
     return @@model
   end
 
@@ -51,13 +60,11 @@ module EPlusModel
     file = self.pre_process_file(idf_file)
     version = self.get_version(file)
     model = self.new(version)
-    model.add_from_file(idf_file, false, false )  
+    model.add_from_file(idf_file, false, false ) 
+    return model 
   end
 
 
-  def self.get_empty_geometry_from_file(idf_file)
-
-  end
 
 
 end #end of module

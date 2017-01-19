@@ -133,6 +133,14 @@ module EPlusModel
             end                 
         end                
 
+        def get_required_objects_list
+            required_objects = []
+            @data.each{|key,object|                
+                required_objects << object.name if object.required
+            }
+            return required_objects        
+        end
+
         def [](object_name)
             raise "Trying to add inexistent object '#{object_name}'" if not @data.key? object_name.downcase         
             @data[object_name.downcase]

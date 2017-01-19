@@ -65,13 +65,22 @@ module EPlusModel
             return sel.shift.value
         end
 
+        def delete(field_name)
+            @fields.each{|f|
+                next if not f.name.downcase.strip == field_name.downcase.strip
+                f.set_value(nil) # this validates inputs                
+                return true
+            }
+            self.print
+            return false
+        end
+
         def []=(field_name,value)
             @fields.each{|f|
                 next if not f.name.downcase.strip == field_name.downcase.strip
                 f.set_value(value) # this validates inputs                
                 return true
             }
-            self.print
             return false
         end
 
@@ -110,7 +119,7 @@ module EPlusModel
             extension_started = false
             @fields.each_with_index{|field,index|                
                 extension_started = true if field.begin_extensible
-                final = ((index == @fields.length - 1) or ( extension_started and not field.value ))
+                final = ((index == @fields.length - 1) or ( extension_started and not @fields[index+1].value ))
                 field.print(final)
                 break if final
             }
