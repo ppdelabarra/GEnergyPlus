@@ -8,6 +8,7 @@ require_relative "rbplus/lights"
 require_relative "rbplus/occupancy"
 require_relative "rbplus/infiltration"
 require_relative "rbplus/construction"
+require_relative "rbplus/family"
 
 
 module EPlusModel

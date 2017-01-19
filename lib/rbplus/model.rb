@@ -164,77 +164,13 @@ module EPlusModel
 
 
     def get_geometry_from_file(idf_file, other_options)      
-      all_geometry =  [  
-                        # Required for a correct geometry interpretation
-                        "GlobalGeometryRules",
-
-                        #What we want to describe
-                        "Zone", 
-
-                        # Surfaces      
-                        ## Walls                
-                        "Wall:Exterior",
-                        "Wall:Adiabatic",
-                        "Wall:Underground",
-                        "Wall:Interzone",
-
-                        ## Roof / Ceiling
-                        "Roof",
-                        "Ceiling:Adiabatic",
-                        "Ceiling:Interzone",
-
-                        "Floor:GroundContact",
-                        "Floor:Adiabatic",
-                        "Floor:Interzone",
-
-                        ## Windows/Doors
-                        "Window",
-                        "Door",
-                        "GlazedDoor",
-                        "Window:Interzone",
-                        "Door:Interzone",
-                        "GlazedDoor:Interzone",
-
-                        # Building Surfaces - Detailed
-                        "Wall:Detailed",
-                        "RoofCeiling:Detailed",
-                        "Floor:Detailed",
-                        "BuildingSurface:Detailed",                       
-                        "FenestrationSurface:Detailed",                       
-
-                        #Internal mass
-                        "InternalMass",
-
-                        # Detached shading Surfaces
-                        "Shading:Site",
-                        "Shading:Building",                      
-                        "Shading:Site:Detailed",
-                        "Shading:Building:Detailed",
-
-                        # Attached shading surfaces
-                        "Shading:Overhang",
-                        "Shading:Overhang:Projection",
-                        "Shading:Fin",
-                        "Shading:Fin:Projection",
-                        "Shading:Zone:Detailed",
-                        
-                      ]
-        self.add_from_file(idf_file, all_geometry, other_options)
-        return self
+      all_geometry = EPlusModel::Family.get_family_members("All Geometry")
+      self.add_from_file(idf_file, all_geometry, other_options)
+      return self
     end
 
     def model_as_storey(options)
-        roof_and_ceiling_objects = [        
-                                      "Roof",                        
-                                      "Ceiling:Adiabatic", 
-                                      "Ceiling:Interzone", 
-                                      "Floor:GroundContact", 
-                                      "Floor:Adiabatic", 
-                                      "Floor:Interzone", 
-                                      "Buildingsurface:detailed",
-                                      "RoofCeiling:Detailed",
-                                      "Floor:Detailed",
-                              ]
+        roof_and_ceiling_objects = EPlusModel::Family.get_family_members("Roof and Ceiling")
 
         roof_and_ceiling_objects.each{ |object_name|
             object_array = self[object_name]
