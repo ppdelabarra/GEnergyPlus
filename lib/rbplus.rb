@@ -4,11 +4,12 @@ require_relative "rbplus/model"
 require_relative "rbplus/array"
 require_relative "rbplus/zone"
 require_relative "rbplus/schedules"
-require_relative "rbplus/lights"
-require_relative "rbplus/occupancy"
-require_relative "rbplus/infiltration"
 require_relative "rbplus/construction"
-require_relative "rbplus/family"
+
+require_relative "rbplus/databases/family"
+require_relative "rbplus/databases/infiltration"
+require_relative "rbplus/databases/occupancy"
+require_relative "rbplus/databases/lights"
 
 
 module EPlusModel
