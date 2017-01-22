@@ -5,6 +5,8 @@ require_relative "rbplus/array"
 require_relative "rbplus/zone"
 require_relative "rbplus/schedules"
 require_relative "rbplus/construction"
+require_relative "rbplus/connector"
+
 
 require_relative "rbplus/databases/family"
 require_relative "rbplus/databases/infiltration"
@@ -26,16 +28,7 @@ module EPlusModel
 
 
   def self.new(version)
-    @@model = Model.new(version)
-    @@model.add("Building",Hash.new) #Include the default building
-    @@model.add("RunPeriod",{
-      "Name" => "default_period",
-      "Begin Month" => 1,
-      "Begin day of month" => 1,
-      "End Month" => 12,
-      "End day of month" => 31
-    }) #Include the default building
-    
+    @@model = Model.new(version)        
     return @@model
   end
 

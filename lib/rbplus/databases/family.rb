@@ -3,6 +3,55 @@ module EPlusModel
 
         @@data = Hash.new
 
+        @@data["Walls"] =   [
+                                "Wall:Exterior",
+                                "Wall:Adiabatic",
+                                "Wall:Underground",
+                                "Wall:Interzone",
+                                "Wall:Detailed",
+                                "BuildingSurface:Detailed", #Check that it is a wall
+                            ]
+        @@data["Interior Walls"] =  [                                        
+                                        "Wall:Interzone",
+                                        "Wall:Detailed", #endure that it is interior
+                                        "Wall: Adiabatic", 
+                                        "BuildingSurface:Detailed", # Check that is an interior wall|                                        
+                                    ]  
+        @@data["Exterior Walls"] =  [
+                                        "Wall:Exterior",
+                                        "Wall:Adiabatic",
+                                        "BuildingSurface:Detailed",
+                                    ]          
+        @@data["Underground Walls"] =   [
+                                            "Buildingsurface:Detailed",
+                                            "Wall:Underground"
+                                        ]
+
+        @@data["Fenestration"] = [
+                                    "Window",
+                                    "Door",
+                                    "GlazedDoor",
+                                    "Window:Interzone",
+                                    "Door:Interzone",
+                                    "GlazedDoor:Interzone",
+                                    "FenestrationSurface:Detailed",     
+                                 ]                  
+        @@data["Windows"] = [
+                                "Window",                                
+                                "Window:Interzone",    
+                                "FenestrationSurface:Detailed",     
+                            ]         
+
+        @@data["Exterior windows"] = [
+                                        "Window",                                                                           
+                                        "FenestrationSurface:Detailed",   
+                                     ]        
+
+        @@data["Interior windows"] = [
+                                        "Window:Interzone",                                                                           
+                                        "FenestrationSurface:Detailed",   
+                                     ]                                                                                      
+
         @@data["Roof and Ceiling"] = [        
                                       "Roof",                        
                                       "Ceiling:Adiabatic", 
@@ -45,13 +94,14 @@ module EPlusModel
                                     "Window:Interzone",
                                     "Door:Interzone",
                                     "GlazedDoor:Interzone",
+                                    "FenestrationSurface:Detailed",     
 
                                     # Building Surfaces - Detailed
                                     "Wall:Detailed",
                                     "RoofCeiling:Detailed",
                                     "Floor:Detailed",
                                     "BuildingSurface:Detailed",                       
-                                    "FenestrationSurface:Detailed",                       
+                                                      
 
                                     #Internal mass
                                     "InternalMass",

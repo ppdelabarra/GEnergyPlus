@@ -31,8 +31,11 @@ module EPlusModel
                 next if value == nil
                 #check that it matches value_type (Ax, Nx)
                 type_error = "Fatal: expected value for '#{field.name}' was of kind '#{ field.numeric? ? "Numeric" : "String" }', but a '#{value.class}' was privided"
-                if field.numeric?  then
-                    raise type_error if not value.is_a? Numeric
+                if field.numeric?  then  
+                    autosize = (value.is_a? String and value.strip.downcase == "autosize" and field.autosizable)  
+                    autocalculate = (value.is_a? String and value.strip.downcase == "autocalculate" and field.autocalculatable)
+                    raise type_error if not value.is_a? Numeric unless (autosize or autocalculate)
+                    next if autosize or autocalculate
                     range_error = "Fatal: '#{field.name}' value out of range (#{value}) in object '#{self.name}'... expected value between #{field.minimum} and #{field.maximum}"
                     raise range_error if (field.minimum and value < field.minimum) or (field.maximum and value > field.maximum)
                 else                                       
@@ -112,16 +115,22 @@ module EPlusModel
             puts ""
         end
 
-        def print
-            puts "!- #{@name.capitalize}"
-            puts "#{@name.capitalize},"
+        def n_used_fields
+            length = @fields.length
+            @fields.reverse.each_with_index{|field,index|                
+                return length - index if (field.value.is_a? String or field.value.is_a? Numeric or field.required)
+            }
+            return @fields.length
+        end
 
-            extension_started = false
-            @fields.each_with_index{|field,index|                
-                extension_started = true if field.begin_extensible
-                final = ((index == @fields.length - 1) or ( extension_started and not @fields[index+1].value ))
+        def print
+            puts "#{@name.capitalize},"
+            n = [self.n_used_fields, self.min_fields].max   
+                     
+            n.times{|index|
+                field = @fields[index]               
+                final = index == (n-1)
                 field.print(final)
-                break if final
             }
         end
 

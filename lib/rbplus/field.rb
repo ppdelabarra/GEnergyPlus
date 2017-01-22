@@ -63,7 +63,7 @@ module EPlusModel
 
         def set_value(value)
             if @type.is_a? String and @type.downcase == "choice" then
-                raise "Incorrect key in 'choice' field... '#{value}' was inputed while the options are [#{@keys.join(",")}] " if not @keys.map{|x| x.downcase}.include? value.downcase
+                raise "Incorrect key in 'choice' field of... '#{value}' was inputed while the options are [#{@keys.join(",")}] " if not @keys.map{|x| x.downcase}.include? value.downcase
             end
             self.value = value
         end

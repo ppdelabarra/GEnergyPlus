@@ -48,7 +48,7 @@ module EPlusModel
             next if value.strip == ""
             field = object_definition.fields[index]          
             inputs[field.name] = value      
-            inputs[field.name] = inputs[field.name].to_f if field.numeric?   
+            inputs[field.name] = inputs[field.name].to_f if (field.numeric? and not (value.strip.downcase == "autosize" or value.strip.downcase == "autocalculate"))
         } 
         self.add(object_name,inputs)
       }
@@ -136,8 +136,10 @@ module EPlusModel
     end
 
     def unique_id?(object_name,id)
-      return true if self[object_name] == nil
-      return false if self[object_name].map{|x| x.id.downcase}.include? id.downcase 
+      arr = self[object_name]
+      return true if arr == nil
+      return true if not arr[0].id #if not responds to ID
+      return false if arr.map{|x| x.id.downcase}.include? id.downcase 
       return true
     end
 
@@ -169,6 +171,80 @@ module EPlusModel
       return self
     end
 
+    def set_exterior_windows_construction(construction)
+      exterior_window_objects = EPlusModel::Family.get_family_members("Exterior Windows")
+      exterior_window_objects.each{|object_name|
+        object_array = self[object_name]
+        next if not object_array
+        object_array.each{|object|
+          case object_name.downcase
+          when "fenestrationsurface:detailed"
+            type = object["Surface Type"].downcase
+            base_surface_id = object["Building Surface Name"]
+            base_surface = self.get_object_by_id(base_surface_id)
+            raise "Base surface '#{base_surface_id}' of #{object.name} '#{object.id}' nof found" if not base_surface
+            next if not (type == "window"and base_surface["Outside Boundary Condition"].downcase == "outdoors"  )
+          end
+          object["construction name"] = construction.id
+        }  
+      }
+      return self
+    end
+
+    def set_interior_windows_construction(construction)
+      window_objects = EPlusModel::Family.get_family_members("Interior Windows")
+      window_objects.each{|object_name|
+        object_array = self[object_name]
+        next if not object_array
+        object_array.each{|object|
+          case object_name.downcase
+          when "fenestrationsurface:detailed"
+            type = object["Surface Type"].downcase
+            base_surface_id = object["Building Surface Name"]
+            base_surface = self.get_object_by_id(base_surface_id)
+            raise "Base surface '#{base_surface_id}' of #{object.name} '#{object.id}' nof found" if not base_surface
+            next if not (type == "window"and base_surface["Outside Boundary Condition"].downcase == "surface"  )
+          end
+          object["construction name"] = construction.id
+        }  
+      }
+      return self
+    end
+
+    def set_interior_walls_construction(construction)
+      wall_objects = EPlusModel::Family.get_family_members("Interior Walls")
+      wall_objects.each{|object_name|
+        object_array = self[object_name]
+        next if not object_array
+        object_array.each{|object|
+          case object_name.downcase
+          when "buildingsurface:detailed"
+            type = object["Surface Type"].downcase            
+            next if not (type == "wall"and object["Outside Boundary Condition"].downcase == "surface"  )
+          end
+          object["construction name"] = construction.id
+        }  
+      }
+      return self
+    end
+
+    def set_exterior_walls_construction(construction)
+      wall_objects = EPlusModel::Family.get_family_members("exterior Walls")
+      wall_objects.each{|object_name|
+        object_array = self[object_name]
+        next if not object_array
+        object_array.each{|object|
+          case object_name.downcase
+          when "buildingsurface:detailed"
+            type = object["Surface Type"].downcase                       
+            next if (not type == "wall" and not object["Outside Boundary Condition Object"] == "outdoors")
+          end
+          object["construction name"] = construction.id
+        }  
+      }
+      return self
+    end
+
     def model_as_storey(options)
         roof_and_ceiling_objects = EPlusModel::Family.get_family_members("Roof and Ceiling")
 
@@ -181,7 +257,9 @@ module EPlusModel
                 when "buildingsurface:detailed"
                     type = object["Surface Type"].downcase
                     next if not ["floor", "roof", "ceiling"].include? type
-                    object["Outside Boundary Condition"]="Adiabatic"            
+                    object["Outside Boundary Condition"]="Adiabatic"    
+                    object["Sun Exposure"]="NoSun"
+                    object["Wind Exposure"]="NoWind"        
                     object.delete "Outside Boundary Condition Object"
                 when "roofceiling:detailed"
                     object["Outside Boundary Condition"]="Adiabatic"            
@@ -201,6 +279,41 @@ module EPlusModel
         }
         return self
     end
+
+    def add_branch_list(name,branch_array)
+            inputs = { "name" => name }
+            branch_array.each_with_index{|branch,index|
+                inputs["Branch #{index+1} Name"]=branch.id
+            }
+            self.add("branchlist",inputs)
+        end
+
+        def add_connector_list(name,connector_array)
+            inputs = { "name" => name }
+            connector_array.each_with_index{|connector,index|
+                inputs["Connector #{index + 1} Object Type"]=connector.name
+                inputs["Connector #{index + 1} name"]=connector.id
+            }
+            self.add("ConnectorList",inputs)
+        end
+
+        def add_splitter(name,inlet_branch,outlet_branch_array)
+            inputs = { "name" => name }
+            inputs["Inlet branch name"] = inlet_branch.id
+            outlet_branch_array.each_with_index{|branch,index|
+                inputs["Outlet Branch #{index+1} Name"] = branch.id
+            }
+            self.add("Connector:Splitter", inputs)
+        end
+
+        def add_mixer(name,outlet_branch,inlet_branch_array)
+            inputs = { "name" => name }
+            inputs["Outlet branch name"] = outlet_branch.id
+            inlet_branch_array.each_with_index{|branch,index|
+                inputs["Inlet Branch #{index+1} Name"] = branch.id
+            }
+            self.add("Connector:Mixer", inputs)
+        end
 
   end #end of class
 

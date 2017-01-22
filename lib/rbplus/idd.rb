@@ -142,6 +142,7 @@ module EPlusModel
         end
 
         def [](object_name)
+            object_name.strip!
             raise "Trying to add inexistent object '#{object_name}'" if not @data.key? object_name.downcase         
             @data[object_name.downcase]
         end
