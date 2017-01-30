@@ -1,17 +1,17 @@
-require_relative "rbplus/version"
-require_relative "rbplus/idd"
-require_relative "rbplus/model"
-require_relative "rbplus/array"
-require_relative "rbplus/zone"
-require_relative "rbplus/schedules"
-require_relative "rbplus/construction"
-require_relative "rbplus/connector"
+require_relative "genergyplus/version"
+require_relative "genergyplus/idd"
+require_relative "genergyplus/model"
+require_relative "genergyplus/array"
+require_relative "genergyplus/zone"
+require_relative "genergyplus/schedules"
+require_relative "genergyplus/construction"
+require_relative "genergyplus/connector"
 
 
-require_relative "rbplus/databases/family"
-require_relative "rbplus/databases/infiltration"
-require_relative "rbplus/databases/occupancy"
-require_relative "rbplus/databases/lights"
+require_relative "genergyplus/databases/family"
+require_relative "genergyplus/databases/infiltration"
+require_relative "genergyplus/databases/occupancy"
+require_relative "genergyplus/databases/lights"
 
 
 module EPlusModel

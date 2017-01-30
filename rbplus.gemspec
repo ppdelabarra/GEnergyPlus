@@ -1,18 +1,18 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'rbplus/version'
+require 'genergyplus/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "rbplus"
+  spec.name          = "genergyplus"
   spec.version       = EPlusModel::VERSION
   spec.authors       = ["German Molina"]
   spec.email         = ["germolinal@gmail.com"]
 
   spec.summary       = %q{A Gem that allows handling, creating, modifying and simulating EnergyPlus IDF files.}
   spec.description   = %q{ A Gem that allows handling, creating, modifying and simulating EnergyPlus IDF files, with the purpose of allowing scriptin, optimization, etc. }
-  spec.homepage      = "https://github.com/IGD-Labs/rbplus"
-  spec.license       = "MIT"
+  spec.homepage      = "https://github.com/IGD-Labs/genergyplus"
+  spec.license       = "GPLv3"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.
