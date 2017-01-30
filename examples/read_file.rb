@@ -1,4 +1,4 @@
-require_relative "../lib/rbplus"
+require_relative "../lib/genergyplus"
 
 if ARGV.length != 1
     warn "USAGE: ruby read_file.rb 'NAME_OF_FILE_TO_READ'"
