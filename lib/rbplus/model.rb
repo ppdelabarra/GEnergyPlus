@@ -81,18 +81,27 @@ module EPlusModel
       return object
     end
 
-    def print 
+    def print_to_file(file)
       @objects.each{|key,value|    
         if value.is_a? Array then
           value.each{|i| 
-            i.print
-            puts ""
+            i.print(file)
+            file.puts ""
           }                  
         else    
-          value.print
+          value.print(file)
         end
-        puts ""        
+        file.puts ""        
       }
+      file.close
+    end
+
+    def save(file_name)
+      self.print_to_file(File.open(file_name,'w'))
+    end
+
+    def print 
+      self.print_to_file($stdout)
     end
 
     def help(object_name)

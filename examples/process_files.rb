@@ -101,6 +101,7 @@ model.set_exterior_walls_construction(exterior_wall_construction)
 
 cooling_setpoint = model.add_constant_schedule("Cooling setpoint", 25)
 heating_setpoint = model.add_constant_schedule("Heating setpoint", 18)
+
 always_on = model.add_constant_schedule("Always on", 1)
 always_off = model.add_constant_schedule("Always off", 0)
 
@@ -130,15 +131,15 @@ model["zone"].each_with_index{|zone,index|
     })
 }
 
-## Add plant loop
-chilled_water_loop = model.add("HVACTemplate:Plant:ChilledWaterLoop",{
+## Add plant loops
+model.add("HVACTemplate:Plant:ChilledWaterLoop",{
     "name" => "Chilled Water Loop",
-    "Pump control type" => "Intermittent",
+    "Pump control type" => "Continuous",
     "Chilled water design setpoint" => 7.22,
     "Chilled water pump configuration" => "ConstantPrimaryNoSecondary",    
 })
 
-chiller = model.add("hvactemplate:plant:chiller",{
+model.add("hvactemplate:plant:chiller",{
     "name" => "chiller",
     "chiller type" => "ElectricReciprocatingChiller",
     #"Capacity" => 123,
@@ -146,14 +147,14 @@ chiller = model.add("hvactemplate:plant:chiller",{
     "Condenser Type" => "AirCooled",
 })
 
-hot_water_loop = model.add("HVACTemplate:Plant:HotWaterLoop",{
-    "name" => "Chilled Water Loop",
+model.add("HVACTemplate:Plant:HotWaterLoop",{
+    "name" => "Hot Water Loop",
     "Pump control type" => "Intermittent",
     "Hot water design setpoint" => 80,
     "Hot water pump configuration" => "ConstantFlow",    
 })
 
-boiler = model.add("HVACTemplate:Plant:Boiler",{
+model.add("HVACTemplate:Plant:Boiler",{
     "name" => "Boiler",
     "Boiler Type" => "HotWaterBoiler",
     "Fuel Type" => "Electricity",
@@ -163,13 +164,12 @@ boiler = model.add("HVACTemplate:Plant:Boiler",{
 
 
 
-
-
 ## ASK FOR OUTPUT
 report = [
 
     #"Zone Air Temperature",
     "Chiller Electric Energy",
+    #"Facility Total Purchased Electric Energy",
 
 ]
 report.each{|variable|
@@ -180,7 +180,7 @@ report.each{|variable|
 }
 
 
-model.add("Output:VariableDictionary",{ "key field" => "IDF" })
+#model.add("Output:VariableDictionary",{ "key field" => "IDF" })
 
 
 model.print

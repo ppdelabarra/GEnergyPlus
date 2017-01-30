@@ -28,19 +28,19 @@ module EPlusModel
         end
 
 
-        def print(final)
+        def print(file,final)
             comma = ","
             comma = ";" if final
             if @value then
-                puts "     #{@value}#{comma}     !-- #{@name}"
+                file.puts "     #{@value}#{comma}     !-- #{@name}"
             else
                 if @default then                    
-                    puts "     #{@default}#{comma}     !-- #{@name} (default value)"                
+                    file.puts "     #{@default}#{comma}     !-- #{@name} (default value)"                
                 else
                     if @required then
                         raise "Fatal: not input nor default value at '#{@name}"
                     else                        
-                        puts "     #{comma}     !-- #{@name} (value not required)"
+                        file.puts "     #{comma}     !-- #{@name} (value not required)"
                     end
                 end
             end           

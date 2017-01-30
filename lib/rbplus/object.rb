@@ -123,14 +123,14 @@ module EPlusModel
             return @fields.length
         end
 
-        def print
-            puts "#{@name.capitalize},"
+        def print(file)
+            file.puts "#{@name.capitalize},"
             n = [self.n_used_fields, self.min_fields].max   
                      
             n.times{|index|
                 field = @fields[index]               
                 final = index == (n-1)
-                field.print(final)
+                field.print(file,final)
             }
         end
 

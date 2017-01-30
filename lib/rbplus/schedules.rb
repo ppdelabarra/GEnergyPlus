@@ -27,9 +27,10 @@ module EPlusModel
 
         def add_default_office_occupation_schedule(name,early,late, lunch)
             inputs = { "name" => name }
-            inputs["Field 1"] = "Through: 12/31"
-            inputs["Field 2"] = "Interpolate: Yes"
-            inputs["Field 3"] = "For: Weekends Holidays"
+            inputs["Field 1"] = "Through: 12/31"            
+            inputs["Field 2"] = "For: Weekends Holidays"
+            
+            inputs["Field 3"] = "Interpolate: Yes"
             inputs["Field 4"] = "Until: 24:00, 0.0 "
                         
             inputs["Field 5"] = "For: AllOtherDays"
@@ -38,43 +39,60 @@ module EPlusModel
             lunch = EPlusModel::Hours.standard_to_decimal(lunch)
 
             #before arrival
-            inputs["Field 6"] = "Until: #{EPlusModel::Hours.decimal_to_standard(early-0.5)} , 0.0"            
-            inputs["Field 7"] = "Until: #{EPlusModel::Hours.decimal_to_standard(early+0.5)} , 1.0"
+            
+            inputs["Field 6"] = "Interpolate: Yes"
+            inputs["Field 7"] = "Until: #{EPlusModel::Hours.decimal_to_standard(early-0.5)} , 0.0"            
+            inputs["Field 8"] = "Until: #{EPlusModel::Hours.decimal_to_standard(early+0.5)} , 1.0"
 
             #lunch
-            inputs["Field 8"] = "Until: #{EPlusModel::Hours.decimal_to_standard(lunch-0.8)} , 1.0"            
-            inputs["Field 9"] = "Until: #{EPlusModel::Hours.decimal_to_standard(lunch)} , 0.15"
-            inputs["Field 10"] = "Until: #{EPlusModel::Hours.decimal_to_standard(lunch + 0.8)} , 1.0"
+            inputs["Field 9"] = "Until: #{EPlusModel::Hours.decimal_to_standard(lunch-0.8)} , 1.0"            
+            inputs["Field 10"] = "Until: #{EPlusModel::Hours.decimal_to_standard(lunch)} , 0.15"
+            inputs["Field 11"] = "Until: #{EPlusModel::Hours.decimal_to_standard(lunch + 0.8)} , 1.0"
 
 
             #before leaving            
-            inputs["Field 11"] = "Until: #{EPlusModel::Hours.decimal_to_standard(late-0.5)} , 1.0"            
-            inputs["Field 12"] = "Until: #{EPlusModel::Hours.decimal_to_standard(late+0.5)} , 0.0"
+            inputs["Field 12"] = "Until: #{EPlusModel::Hours.decimal_to_standard(late-0.5)} , 1.0"            
+            inputs["Field 13"] = "Until: #{EPlusModel::Hours.decimal_to_standard(late+0.5)} , 0.0"
 
 
             EPlusModel.model.add("Schedule:Compact",inputs)
         end
 
         def add_default_office_lighting_schedule(name,early,late)
-            inputs = { "name" => name }
+            inputs = { "name" => name }                        
             inputs["Field 1"] = "Through: 12/31"
-            inputs["Field 2"] = "Interpolate: Yes"
-            inputs["Field 3"] = "For: Weekends Holidays"
+            inputs["Field 2"] = "For: Weekends Holidays"
+            inputs["Field 3"] = "Interpolate: Yes"
             inputs["Field 4"] = "Until: 24:00, 0.0 "
                         
             inputs["Field 5"] = "For: AllOtherDays"
+            inputs["Field 6"] = "Interpolate: Yes"
             early = EPlusModel::Hours.standard_to_decimal(early)
             late = EPlusModel::Hours.standard_to_decimal(late)
                         
             #before arrival
-            inputs["Field 6"] = "Until: #{EPlusModel::Hours.decimal_to_standard(early-0.5)} , 0.0"            
-            inputs["Field 7"] = "Until: #{EPlusModel::Hours.decimal_to_standard(early+0.5)} , 1.0"
+            inputs["Field 7"] = "Until: #{EPlusModel::Hours.decimal_to_standard(early-0.5)} , 0.0"            
+            inputs["Field 8"] = "Until: #{EPlusModel::Hours.decimal_to_standard(early+0.5)} , 1.0"
 
 
             #before leaving            
-            inputs["Field 8"] = "Until: #{EPlusModel::Hours.decimal_to_standard(late-0.5)} , 1.0"            
-            inputs["Field 9"] = "Until: #{EPlusModel::Hours.decimal_to_standard(late+0.5)} , 0.0"
+            inputs["Field 9"] = "Until: #{EPlusModel::Hours.decimal_to_standard(late-0.5)} , 1.0"            
+            inputs["Field 10"] = "Until: #{EPlusModel::Hours.decimal_to_standard(late+0.5)} , 0.0"
 
+
+            EPlusModel.model.add("Schedule:Compact",inputs)
+        end
+
+        def add_office_day_schedule(name, office_day_value, holuday_value)
+            inputs = { "name" => name }                        
+            inputs["Field 1"] = "Through: 12/31"
+            inputs["Field 2"] = "For: Weekends Holidays"
+            inputs["Field 3"] = "Interpolate: Yes"
+            inputs["Field 4"] = "Until: 24:00, #{holuday_value}"
+                        
+            inputs["Field 5"] = "For: AllOtherDays"
+            inputs["Field 6"] = "Interpolate: Yes"
+            inputs["Field 7"] = "Until: 24:00, #{office_day_value}"            
 
             EPlusModel.model.add("Schedule:Compact",inputs)
         end
