@@ -1,6 +1,3 @@
-require_relative "object"
-require_relative "field"
-
 
 module EPlusModel  
     class IDD

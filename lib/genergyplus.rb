@@ -1,11 +1,14 @@
 require_relative "genergyplus/version"
+require_relative "genergyplus/array"
+require_relative "genergyplus/field"
 require_relative "genergyplus/idd"
 require_relative "genergyplus/model"
-require_relative "genergyplus/array"
-require_relative "genergyplus/zone"
-require_relative "genergyplus/schedules"
-require_relative "genergyplus/construction"
-require_relative "genergyplus/connector"
+require_relative "genergyplus/object"
+
+require_relative "genergyplus/generators/zone"
+require_relative "genergyplus/generators/schedules"
+require_relative "genergyplus/generators/construction"
+require_relative "genergyplus/generators/connector"
 
 
 require_relative "genergyplus/databases/family"

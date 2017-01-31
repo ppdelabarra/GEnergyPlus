@@ -12,10 +12,10 @@ The purpose of this gem is to help you modify, programmatically, IDF files in or
 analysis, or whatever you want.
 
 
-## Installation (NOT WORKING, I WAS NOT ABLE TO UPLOAD THE GEM... please downlaod it)
+## Installation 
 
 ```ruby
-gem install 'genergyplus'
+gem install genergyplus
 ```
 
 ## Usage
@@ -24,14 +24,18 @@ A powerful feature of GEnergyPlus is that it allows
 
 
 ```
-require_relative 'path/to/genergyplus'
+require 'genergyplus'
 
  ###################################
  ## Create an EnergyPlus model. 
  ###################################
- #Provide the EnergyPlus version... only 8.6.0 is supported for now.
+ # Provide the EnergyPlus version... only 8.6.0 is supported for now.
 
 model = EPlusModel.new("8.6.0")  
+
+ # Or create it based on an existing file
+
+model = EPlusModel.new_from_file('input_file.idf')  
 
  ###############################################
  ## Use the basic "add" method for adding zones. 
@@ -55,7 +59,7 @@ lunch = "13:30"
  ###################################
  # Schedules can be added from the *model.add{'Schedule:compact',{options}}* method, 
  # but some objects, such as constant schedules, may be created in an easier way.
- # We call these methods 'generators' (thus the name of the gem)
+ # We call these methods 'generators' (thus the name 'genergyplus')
 
 always_on_schedule = model.add_constant_schedule("Always on", 1.0)
 

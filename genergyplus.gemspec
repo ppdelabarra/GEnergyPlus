@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.summary       = %q{A Gem that allows handling, creating, modifying and simulating EnergyPlus IDF files.}
   spec.description   = %q{ A Gem that allows handling, creating, modifying and simulating EnergyPlus IDF files, with the purpose of allowing scriptin, optimization, etc. }
   spec.homepage      = "https://github.com/IGD-Labs/genergyplus"
-  spec.license       = "GPLv3"
+  spec.license       = "GPL-3.0"
 
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
