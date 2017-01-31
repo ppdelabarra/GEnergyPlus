@@ -19,9 +19,14 @@ require_relative "genergyplus/databases/lights"
 
 module EPlusModel
 
+  # Main module of the gem. It only allows handling one model at a time.
 
   @@model=false
 
+  # References the model
+  #
+  # @author Germán Molina
+  # @return [Model] The model
   def self.model
     @@model
   end
@@ -29,12 +34,22 @@ module EPlusModel
 
 
 
-
+  # Creates a new model with a certain version.
+  #
+  # @author Germán Molina
+  # @param version [String] The version of EnergyPlus to be used... 8.6.0 is the only one supported so far.
+  # @return [Model] The model
   def self.new(version)
     @@model = Model.new(version)        
     return @@model
   end
 
+  # Used when creating a model from an existing file. This returns an array
+  # of strings, each of which represent an object.
+  #
+  # @author Germán Molina
+  # @param idf_file [String] The name of the IDF file to read
+  # @return [<String>] An array of string
   def self.pre_process_file(idf_file)
     #Pre process file
     raw_file = File.readlines(idf_file)
@@ -43,6 +58,12 @@ module EPlusModel
     file.join.split(";") # Put the whole file togeter, and pack into objects
   end    
 
+  # Finds the version of an existing IDF file (provided pre-procssed).
+  # If it is not there, 8.6.0 will be assigned
+  #
+  # @author Germán Molina
+  # @param file [<String>] An array of strings representing the object.
+  # @return [String] The version in the file.
   def self.get_version(file)
     version = file.select{|x| x.downcase.start_with? "version"}.shift    
       if not version then
@@ -54,6 +75,11 @@ module EPlusModel
       return version
   end
 
+  # Reads an IDF file and returns a model with all its data.
+  # 
+  # @author Germán Molina
+  # @param idf_file [String] The name of the IDF file
+  # @return [Model] The model 
   def self.new_from_file(idf_file)
     file = self.pre_process_file(idf_file)
     version = self.get_version(file)
