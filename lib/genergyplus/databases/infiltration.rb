@@ -1,4 +1,9 @@
 module EPlusModel      
+
+    # This module contains parameters related to infiltration. For example,
+    # the constants used by BLAST and DOE-2 for calculating infiltration in the
+    # Infiltration:DesignFlowRate object.    
+    #
     module Infiltration
         @@data = Hash.new
 
@@ -17,6 +22,11 @@ module EPlusModel
             "Velocity Squared Term Coefficient" => 0.0
          } 
 
+        # Retrieves some infiltration data.
+        #
+        # @author Germán Molina
+        # @param description [String] The name of the data to retrieve
+        # @return [Hash] The data
         def self.get_coefficients(description)            
             @@data.each{|key,value|
                 return value if key.downcase.strip == description.downcase.strip

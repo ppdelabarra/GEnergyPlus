@@ -1,7 +1,21 @@
 
 module EPlusModel  
+
+    # This class is the basic structure of the Input Data Dictionary of the model. 
+    # That is, where all the possible objects that can be included in the model are listed,
+    # and specified.
+    #
+    # It is basically an object with a hash that contains empty objects. When adding one to the
+    # model, it will cloned and filled.
+    #
     class IDD
        
+        # Initializes the IDD object of the model. That is, it reads an .idd file 
+        # and fills the @data object with all the allowed objects.        
+        #
+        # @author Germán Molina 
+        # @param file [String] The path to the IDD file.
+        # @return [IDD] The IDD object
         def initialize(file)
             @data = Hash.new
             lines = File.readlines(file).select{|ln| not ln.start_with? "!" and not ln.strip == ""}
@@ -130,6 +144,11 @@ module EPlusModel
             end                 
         end                
 
+        # Returns an array of Strings correspondinf to the types of all the 
+        # objects that are marked as required in the IDD file.
+        #
+        # @author Germán Molina 
+        # @return [<String>] An array with the type of the required objects
         def get_required_objects_list
             required_objects = []
             @data.each{|key,object|                
@@ -138,12 +157,22 @@ module EPlusModel
             return required_objects        
         end
 
-        def [](object_name)
-            object_name.strip!
-            raise "Trying to add inexistent object '#{object_name}'" if not @data.key? object_name.downcase         
-            @data[object_name.downcase]
+        # Retreives the object definition (i.e. the empty object) 
+        # of a certain name.
+        #
+        # @author Germán Molina 
+        # @param object_type [String] The type of the object to retrieve.
+        # @return [EnergyPlusObject] The empty object         
+        def [](object_type)
+            object_type.strip!
+            raise "Trying to add inexistent object '#{object_type}'" if not @data.key? object_type.downcase         
+            @data[object_type.downcase]
         end
 
+        # Returns all the object types in the IDD file.
+        #
+        # @author Germán Molina 
+        # @return [<String>] An array with the type of all objects 
         def keys
             @data.keys
         end

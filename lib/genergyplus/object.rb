@@ -53,18 +53,7 @@ module EPlusModel
                 #check if it exists
                 raise "Fatal: Required field '#{field.name}' not found when creating '#{self.type}'" if field.required and not value
                 next if value == nil
-                #check that it matches value_type (Ax, Nx)
-                type_error = "Fatal: expected value for '#{field.type}' was of kind '#{ field.numeric? ? "Numeric" : "String" }', but a '#{value.class}' was privided"
-                if field.numeric?  then  
-                    autosize = (value.is_a? String and value.strip.downcase == "autosize" and field.autosizable)  
-                    autocalculate = (value.is_a? String and value.strip.downcase == "autocalculate" and field.autocalculatable)
-                    raise type_error if not value.is_a? Numeric unless (autosize or autocalculate)
-                    next if autosize or autocalculate
-                    range_error = "Fatal: '#{field.type}' value out of range (#{value}) in object '#{self.type}'... expected value between #{field.minimum} and #{field.maximum}"
-                    raise range_error if (field.minimum and value < field.minimum) or (field.maximum and value > field.maximum)
-                else                                       
-                    raise type_error if not value.is_a? String
-                end
+                field.check_input(value)
             }
             return true
         end

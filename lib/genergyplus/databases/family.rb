@@ -1,4 +1,10 @@
-module EPlusModel      
+module EPlusModel    
+
+    # A module that contains groups and families within the EnergyPlus objects.
+    # 
+    # For example, interior walls may be Wall:Interzone, Wall:Detailed, Wall:Adiabatic 
+    # and BuildingSurface:Detailed. All these are grouped within the family "Interior Walls"
+    #  
     module Family
 
         @@data = Hash.new
@@ -120,7 +126,12 @@ module EPlusModel
                                     "Shading:Zone:Detailed",
                                     
                                 ]
-
+            
+            # Retrieves a family.
+            #
+            # @author Germán Molina
+            # @param description [String] The name of the family
+            # @return [<String>] An array with the types of objects in such family
             def self.get_family_members(description)            
                 @@data.each{|key,value|
                     return value if key.downcase.strip == description.downcase.strip

@@ -27,6 +27,7 @@ end
 def set_version(version)
     File.open(version_file,'w'){|f|
        f.puts "module EPlusModel
+    # Version Constant
     VERSION = '#{version}'
 end"
     }

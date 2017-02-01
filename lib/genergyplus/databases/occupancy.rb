@@ -1,7 +1,16 @@
 module EPlusModel      
+
+    # This module contains information about the metabolic rate of some
+    # common human activities. This module allows retrieveing data in an easier way, 
+    # and allowing an easier to read code.
+    #
+    # Data presented here is useful for ensuring more precise building models.
+    # 
     module People
        @@data = Hash.new
 
+       
+        # Source: EnergyPlus 8.6 Input Output reference
        @@data["Sleeping"] = 72
        @@data["Reclining"] = 81
        @@data["Seated, quiet"] = 108
@@ -38,7 +47,11 @@ module EPlusModel
        @@data["Basketball, competitive"] = (522 + 792)/2
        @@data["Wrestling, competitive"] = (738 + 909)/2
        
-    
+        # Retrieves the metabolic rate of certain activity.
+        #
+        # @author Germán Molina
+        # @param description [String] The activity
+        # @return [Numeric] The data
         def self.heat_gain_per_person(description)            
             @@data.each{|key,value|
                 return value if key.downcase.strip == description.downcase.strip
@@ -46,9 +59,6 @@ module EPlusModel
             return false
         end 
 
-        def self.find(query)
-            @@data.keys.filter{|x| x.downcase.strip.include? query.downcase.strip}
-        end    
     
     end
 end

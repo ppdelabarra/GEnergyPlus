@@ -18,11 +18,16 @@ require_relative "genergyplus/databases/occupancy"
 require_relative "genergyplus/databases/lights"
 
 
+# Main module
 module EPlusModel
 
   # Main module of the gem. It only allows handling one model at a time.
 
+  # The model. It is unique for the module, so only one 
+  # model may be modified at a time.
   @@model=false
+
+
 
   # References the model
   #

@@ -1,22 +1,48 @@
 module EPlusModel      
     class EnergyPlusObject
 
-
-        def adopt_other_options(object_name, other_options)
+        # This method helps managing the "other options" passsed to some generators.
+        # For example, the "set_occupancy" method helps easily adding occupancy to 
+        # a zone by means of a 'people' obejct. However, you might want, sometimes, 
+        # to include some specific options (i.e. a specific name or maybe a precise 
+        # value for latent and sensible heat generation)
+        #
+        # This method, by default, creates the "input" hash for creating the "poeple"
+        # (in the example above) object, by including all the options added in the 
+        # "other_options" hash, adding a name if not given one, and deleting the alrady
+        # existing object with the same name if it already exists
+        #
+        # @author Germán Molina
+        # @param object_type [String] The type of the object to which this is focused
+        # @param other_options [Hash] The other options hash
+        # @return [Hash] The inputs for creating the object
+        def adopt_other_options(object_type, other_options)
             inputs = other_options.clone if other_options
             inputs = Hash.new if not inputs
 
-            name = "#{self.name} - #{object_name}"
+            name = "#{self.name} - #{object_type}"
             name = inputs["name"] if inputs.key? "name" 
             
-            if not EPlusModel.model.unique_name?(object_name,name) then
-                EPlusModel.model.delete(object_name,name)                
+            if not EPlusModel.model.unique_name?(object_type,name) then
+                EPlusModel.model.delete(object_type,name)                
             end                 
 
             inputs["name"] = name 
             return inputs
         end
 
+        # Sets the occupancy of the zone to a certain value, schedule and activity
+        # by creating a 'people' object.
+        #
+        # Aditional options may be given to the 'people' object in the 'other_options' hash
+        #
+        # @author Germán Molina
+        # @param calculation_method [String] The calculation method to use (i.e. people/area, people, area/person)
+        # @param value [Numeric] The value to assign, in the units selected in the calculation method
+        # @param npeople_schedule [EnergyPlusObject] The schedule that modulates the number of people
+        # @param activity_schedule [EnergyPlusObject] The schedule that represents the activity (i.e. metabolic rate) of the people
+        # @param other_options [Hash] Some other options that may be provided to the 'people' object.
+        # @return [EnergyPlusObject] the created object
         def set_occupancy(calculation_method, value, npeople_schedule, activity_schedule, other_options)            
             raise "Fatal:  '#{self.name}' is not a Zone" if not self.verify("zone") #this raises if needed
             
@@ -40,6 +66,17 @@ module EPlusModel
             EPlusModel.model.add("people",inputs)
         end
 
+        # Sets the lighting loads of the zone to a certain value and schedule
+        # by creating a 'lights' object.
+        #
+        # Aditional options may be given to the 'lights' object in the 'other_options' hash
+        #
+        # @author Germán Molina
+        # @param calculation_method [String] The calculation method to use (i.e. LightingLevel, Watts/area, Watts/Person)
+        # @param value [Numeric] The value to assign, in the units selected in the calculation method
+        # @param schedule [EnergyPlusObject] The schedule that modulates the loads
+        # @param other_options [Hash] Some other options that may be provided to the 'light' object.
+        # @return [EnergyPlusObject] the created object
         def set_lights(calculation_method, value, schedule, other_options)
             raise "Fatal:  '#{self.name}' is not a Zone" if not self.verify("zone") #this raises if needed     
 
@@ -62,6 +99,17 @@ module EPlusModel
             EPlusModel.model.add("lights",inputs)            
         end
 
+        # Sets the Electric Equipment loads of the zone to a certain value and schedule
+        # by creating an 'ElectricEquipment' object.
+        #
+        # Aditional options may be given to the created object in the 'other_options' hash
+        #
+        # @author Germán Molina
+        # @param calculation_method [String] The calculation method to use (i.e. EquipmentLevel, Watts/area, Watts/Person)
+        # @param value [Numeric] The value to assign, in the units selected in the calculation method
+        # @param schedule [EnergyPlusObject] The schedule that modulates the loads
+        # @param other_options [Hash] Some other options that may be provided to the object.
+        # @return [EnergyPlusObject] the created object
         def set_electric_equipment(calculation_method, value, schedule, other_options)
             raise "Fatal:  '#{self.name}' is not a Zone" if not self.verify("zone") #this raises if needed     
 
@@ -84,6 +132,17 @@ module EPlusModel
             EPlusModel.model.add("electricequipment",inputs)            
         end
 
+        # Sets the infiltration rate by creating a 'ZoneInfiltration:DesignFlowRate' object
+        #
+        # Aditional options may be given to the created object in the 'other_options' hash. this
+        # is particularly useful for adding the constant coefficients for calculating the infiltration. 
+        #
+        # @author Germán Molina
+        # @param calculation_method [String] The calculation method to use (i.e. flow/zone, flow/area, flow/exteriorArea, flow/ExteriorWallArea, AirChanges/hour)
+        # @param value [Numeric] The value to assign, in the units selected in the calculation method
+        # @param schedule [EnergyPlusObject] The schedule that modulates the infiltrations
+        # @param other_options [Hash] Some other options that may be provided to the object.
+        # @return [EnergyPlusObject] the created object
         def set_design_flow_rate_infiltration(calculation_method, value, schedule, other_options)
             raise "Fatal:  '#{self.name}' is not a Zone" if not self.verify("zone") #this raises if needed     
 
@@ -110,6 +169,16 @@ module EPlusModel
             EPlusModel.model.add("ZoneInfiltration:DesignFlowRate",inputs) 
         end
 
+        # Sets the ventilation rate by creating a 'ZoneVentilation:DesignFlowRate' object
+        #
+        # Aditional options may be given to the created object in the 'other_options' hash
+        #
+        # @author Germán Molina
+        # @param calculation_method [String] The calculation method to use (i.e. flow/zone, flow/area, flow/exteriorArea, flow/ExteriorWallArea, AirChanges/hour)
+        # @param value [Numeric] The value to assign, in the units selected in the calculation method
+        # @param schedule [EnergyPlusObject] The schedule that modulates the infiltrations
+        # @param other_options [Hash] Some other options that may be provided to the object.
+        # @return [EnergyPlusObject] the created object
         def set_design_flow_rate_ventilation(calculation_method, value, schedule, other_options)
             raise "Fatal:  '#{self.name}' is not a Zone" if not self.verify("zone") #this raises if needed     
 
@@ -134,6 +203,15 @@ module EPlusModel
             EPlusModel.model.add("ZoneVentilation:DesignFlowRate",inputs) 
         end
 
+        # Adds thermal mass to a zone by creating an 'InternalMass' object.
+        #
+        # Aditional options may be given to the created object in the 'other_options' hash
+        #
+        # @author Germán Molina
+        # @param construction [EnergyPlusObject] The construction to use
+        # @param area [Numeric] The surface area (in m2) of construction to add to the zone
+        # @param other_options [Hash] Some other options that may be provided to the object.
+        # @return [EnergyPlusObject] the created object
         def set_thermal_mass(construction,area, other_options)
             raise "Fatal:  '#{self.type}' is not a Zone" if not self.verify("zone") #this raises if needed     
 
