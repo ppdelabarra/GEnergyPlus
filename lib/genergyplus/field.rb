@@ -67,7 +67,6 @@ module EPlusModel
         # This method is usually called when printing an object.
         #
         # @author Germán Molina
-        # @param file [File] File to print... it may be the STDOUT
         # @param final [Boolean] Represents whether this field is the last to be printed in an object or not. 
         def help (final)            
             comma = ","
