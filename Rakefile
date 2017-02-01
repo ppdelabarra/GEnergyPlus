@@ -33,12 +33,15 @@ end"
     }
 end
 
-def new_release(type)
-    warn `gem build genergyplus.gemspec`
+def new_release(type)    
     warn `git add .`
     warn `git commit -m "New #{type} release"`
     warn `git push`    
     warn `gem push #{gem_file}`
+end
+
+task :build_gem => [:clean_gem_file] do
+    warn `gem build genergyplus.gemspec`
 end
 
 task :clean_gem_file do
@@ -47,17 +50,17 @@ task :clean_gem_file do
     File.delete(file)
 end
 
-task :new_patch_release => [:doc, :clean_gem_file ] do    
+task :new_patch_release => [:doc, :build_gem ] do    
     set_version increase_version(2)
     new_release("patch")    
 end
 
-task :new_minor_release do    
+task :new_minor_release => [:doc, :build_gem ] do    
     set_version increase_version(1)
     new_release("minor") 
 end
 
-task :new_major_release do    
+task :new_major_release => [:doc, :build_gem ] do    
     set_version increase_version(0)
     new_release("major") 
 end
