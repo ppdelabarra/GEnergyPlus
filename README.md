@@ -154,7 +154,9 @@ model.save("firstIDFfile.idf")
 ```
 ## Development
 
-:TODO
+Feel free to report bugs, include more methods, add generators, useful scripts or whatever you want. Also, extending the libraries is very encouraged, since they increase the quality of the building models and makes it easier to develop them.
+
+Please reference any data that should be referenced (i.e. Data, methods that follow standards, etc.)
 
 ## Contributing
 
