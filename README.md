@@ -18,6 +18,12 @@ analysis, or whatever you want.
 gem install genergyplus
 ```
 
+## Some cool features
+
+- **Supports all EnergyPlus objects:** Generators allows adding some obejcts in an easier and more intuitive way, but every single object within the Input Data Dictionary can be added to the model.
+- **Object oriented:** When you change a name or type or parameter of an object, all the referencing objects are automatically updated.
+- **Check inputs:** By reading the IDD, GEnergyPlus knows what the boundaries and type of inputs should be given.
+
 ## Usage
 
 A powerful feature of GEnergyPlus is that it allows 

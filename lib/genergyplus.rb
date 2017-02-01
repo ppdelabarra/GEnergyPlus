@@ -10,6 +10,7 @@ require_relative "genergyplus/generators/schedules"
 require_relative "genergyplus/generators/construction"
 require_relative "genergyplus/generators/connector"
 
+require_relative "genergyplus/scripts/transform_model"
 
 require_relative "genergyplus/databases/family"
 require_relative "genergyplus/databases/infiltration"

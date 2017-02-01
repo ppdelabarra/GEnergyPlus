@@ -1,7 +1,7 @@
 require "bundler/gem_tasks"
 
 task :doc do
-    warn `yardoc lib/*.rb lib/*/*.rb`
+    warn `yardoc lib/*.rb lib/*/*.rb lib/*/*/*.rb`
 end
 
 def gem_file
@@ -37,7 +37,7 @@ def new_release(type)
     warn `git add .`
     warn `git commit -m "New #{type} release"`
     warn `git push`    
-    #warn `gem push #{gem_file}`
+    warn `gem push #{gem_file}`
 end
 
 task :clean_gem_file do

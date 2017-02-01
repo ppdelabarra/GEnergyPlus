@@ -107,8 +107,8 @@ always_off = model.add_constant_schedule("Always off", 0)
 
 thermostat = model.add("HVACTemplate:thermostat",{
     "name" => "All Zones Thermostat",    
-    "Heating Setpoint Schedule Name" => heating_setpoint.id,
-    "Cooling Setpoint Schedule Name" => cooling_setpoint.id
+    "Heating Setpoint Schedule Name" => heating_setpoint.name,
+    "Cooling Setpoint Schedule Name" => cooling_setpoint.name
 })
 
 design_specification_zoneairdistribution = model.add("designspecification:zoneairdistribution",{ "name" => "All zones zoneairdistribution"})
@@ -119,14 +119,14 @@ design_specification_outdoorair = model.add("designspecification:outdoorair",{
 
 ### Add the same for every zone.
 model["zone"].each_with_index{|zone,index|
-    zone_id = zone.id
+    zone_name = zone.name
     fancoil = model.add("HVACTemplate:zone:Fancoil",{
-        "Zone Name" => zone_id,
-        "Template Thermostat Name" => thermostat.id,
+        "Zone Name" => zone_name,
+        "Template Thermostat Name" => thermostat.name,
         "Outdoor Air Method" => "Flow/Zone",
         "Outdoor Air Flow Rate per Zone" => 0,
-        "System Availability Schedule Name" => always_on.id,
-        "Heating Coil Availability Schedule Name" => always_off.id
+        "System Availability Schedule Name" => always_on.name,
+        "Heating Coil Availability Schedule Name" => always_off.name
 
     })
 }

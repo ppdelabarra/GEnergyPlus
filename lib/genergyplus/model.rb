@@ -1,7 +1,14 @@
 module EPlusModel
 
+  # This is the model class, which is the main object we deal with on the scripts.
+
   class Model
     
+    # Initializes a new, and empty, Model object. It automatically adds the given version.
+    #
+    # @author Germán Molina
+    # @param version [String] the version in format '8.6.0'.
+    # @return [Model] The model itself
     def initialize(version)
       @idd_dir = File.join(File.dirname(File.expand_path(__FILE__)), 'idd_files')    
       @version = version.strip
@@ -10,15 +17,31 @@ module EPlusModel
       @objects = Hash.new
 
       self.add("version",{"version identifier" => version})
+      return self
     end
 
+    # Returns the Input Data Dictionary object of the model.
+    #
+    # @author Germán Molina
+    # @return [IDD] The input data Dictionary object
     def get_required_objects_list
       @idd.get_required_objects_list
     end
 
-    def add_from_file(idf_file, object_name_array, other_options )    
+    # Adds a whole set of objects types from an existing file into the model.
+    #
+    # If 'force required' is set to 'TRUE' in the 'other options' Hash input, 
+    # required objects that are not in the object_type_array will be 
+    # imported anyway.
+    #
+    # @author Germán Molina
+    # @param idf_file [String] The IDF file to read
+    # @param object_type_array [<String>] An array with the types of objects to read
+    # @param other_options [Hash] Other options
+    # @return [Model] The model itself
+    def add_from_file(idf_file, object_type_array, other_options )    
       raise "Fatal: File '#{idf_file}' not found" if not File.file? idf_file
-      object_name_array.map!{|x| x.downcase} if object_name_array
+      object_type_array.map!{|x| x.downcase} if object_type_array
       other_options = Hash.new if not other_options
 
       # Default options
@@ -33,12 +56,12 @@ module EPlusModel
       #Add objects in file to model     
       file.each{|object|
         object = object.split(",")
-        object_name = object.shift.downcase      
-        next if object_name == "version"
+        object_type = object.shift.downcase      
+        next if object_type == "version"
         
-        object_definition = self.get_definition(object_name)
+        object_definition = self.get_definition(object_type)
         
-        next if (object_name_array and not object_name_array.include? object_name) and  # and this thing is not in the list
+        next if (object_type_array and not object_type_array.include? object_type) and  # and this thing is not in the list
                 not (object_definition.required and force_required) 
 
         #initialize the inputs hash
@@ -50,37 +73,48 @@ module EPlusModel
             inputs[field.name] = value      
             inputs[field.name] = inputs[field.name].to_f if (field.numeric? and not (value.strip.downcase == "autosize" or value.strip.downcase == "autocalculate"))
         } 
-        self.add(object_name,inputs)
+        self.add(object_type,inputs)
       }
       return self    
     end
 
-    def add(object_name, inputs)
-      object_name.downcase!
+    # The basic method for adding objects to the model. 
+    #
+    # @author Germán Molina
+    # @return [EnergyPlusObject] The added object
+    # @param object_type [String] The type of the object to add
+    # @param inputs [Hash] The arguments to the obejct 
+    def add(object_type, inputs)
+      object_type.downcase!
 
-      object = get_definition(object_name) #this raises an error if the object does not exist      
+      object = get_definition(object_type) #this raises an error if the object does not exist      
       object.check_input(inputs)  #this raises an error if any
       object = object.create(inputs)      
 
       if object.unique then
-        if @objects.key? object_name then
-          raise "Trying to replace unique object '#{object_name}'"
+        if @objects.key? object_type then
+          raise "Trying to replace unique object '#{object_type}'"
         else
-          self[object_name] = object     
+          self[object_type] = object     
         end
       else
-        if @objects.key? object_name then
-          if not self.unique_id?(object.name, object.id) then
-            raise "A '#{object_name.capitalize}' called '#{object.id}' already exists"   
+        if @objects.key? object_type then
+          if not self.unique_name?(object.type, object.name) then
+            raise "A '#{object_type.capitalize}' called '#{object.name}' already exists"   
           end         
-          self[object_name] << object
+          self[object_type] << object
         else            
-          self[object_name] = [object]     
+          self[object_type] = [object]     
         end
       end
       return object
     end
 
+
+    # Prints the model into a file, which may be the "STDOUT"
+    #
+    # @author Germán Molina
+    # @param file [File] The file to print the model at
     def print_to_file(file)
       @objects.each{|key,value|    
         if value.is_a? Array then
@@ -96,233 +130,153 @@ module EPlusModel
       file.close
     end
 
+    # Writes the model into a text file
+    #
+    # @author Germán Molina
+    # @param file_name [String] The name of the file   
     def save(file_name)
       self.print_to_file(File.open(file_name,'w'))
     end
 
+    # Prints the model into the standard output
+    #
+    # @author Germán Molina
     def print 
       self.print_to_file($stdout)
     end
 
-    def help(object_name)
-      object = @idd[object_name.downcase] #this raises an error if the object does not exist       
+    # Prints data related to a certain object type to the standard output.
+    #
+    # @author Germán Molina
+    # @param object_type [String] The object type
+    def help(object_type)
+      object = @idd[object_type.downcase] #this raises an error if the object does not exist       
       object.help  
     end
 
-    def describe(object_name) 
-      object = @idd[object_name.downcase] #this raises an error if the object does not exist       
-      puts "!- #{object_name.downcase}"
+    # Prints data related to a certain object type to the standard output.
+    #
+    # @author Germán Molina
+    # @param object_type [String] The object type
+    def describe(object_type) 
+      object = @idd[object_type.downcase] #this raises an error if the object does not exist       
+      puts "!- #{object_type.downcase}"
       puts "!- #{object.memo}"
       puts ""
     end
 
-    def get_definition(object_name)
-        @idd[object_name.downcase] #this raises an error if the object does not exist 
+    # Retrieves the definition of the object type, wich is just an object without any 
+    # arguments (i.e. all fields are empty)
+    #
+    # @author Germán Molina    
+    # @param object_type [String] The object type
+    # @return [EnergyPlusObject] The object definition (an empty object of that type)
+    def get_definition(object_type)
+        @idd[object_type.downcase] #this raises an error if the object does not exist 
     end
     
+    # Finds for a certain word in the Input Data Dictionary of the model.
+    # This is very useful for searching IDD items (avoiding reading the 
+    # InputOutput documentation)
+    #
+    # @author Germán Molina    
+    # @param query [String] The word to search, such as "zone" or "HVAC"
+    # @return [<String>] An array of names that match the query
     def find(query)
       @idd.keys.select{|x| x.downcase.include? query.downcase}      
     end
     
-    def [](object_name)
-        @objects[object_name.downcase]
+    # Retrieves the object of given type in the model. 
+    #
+    # If the object is not unique (i.e. the 'version' obejct is
+    # unique, but the 'SurfaceDetailed' is not), an array of objects 
+    # is returned. This is due to the structure used to store data in the 
+    # model. 
+    #
+    # If the model does not have any, "nil" will be returned
+    #
+    # @author Germán Molina    
+    # @param object_type [String] The object type
+    # @return [<EnergyPlusObject>] An array of obejcts or a single object, depending on the type.
+    def [](object_type)
+        @objects[object_type.downcase]
     end
 
-    def []=(object_name,object)
-        @objects[object_name.downcase] = object
+    # Sets an object (or array of objects) to a certain model. This new obejct will
+    # replace the old one.
+    #
+    # @author Germán Molina    
+    # @param object_type [String] The object type
+    # @param object [EnergyPlusObject] The object of array of objects
+    def []=(object_type,object)      
+        @objects[object_type.downcase] = object
     end
 
-    def get_object_by_id(id)
+    # Finds an object inside the model by name (which are unique)
+    #
+    # @author Germán Molina    
+    # @param name [String] The name of the object to find
+    # @return [EnergyPlusObject] The found object, if found. False if not.
+    def get_object_by_name(name)
         @objects.each{|key,object|
             if object.is_a? Array then
-                object = object.get_object_by_id(id)
+                object = object.get_object_by_name(name)
                 return object if object
             else
-                return value if object.id and object.id.downcase == id.downcase
+                return value if object.name and object.name.downcase == name.downcase
             end
         }
         return false
     end
 
-    def unique_id?(object_name,id)
-      arr = self[object_name]
+    # Names of objects should be unique within an object type. Well, this method
+    # allows checking if the name exists already or not in the model.
+    #
+    # @author Germán Molina    
+    # @param object_type [String] The object type
+    # @param name [String] The name to checking
+    # @return [Boolean] True if unique, false if not
+    def unique_name?(object_type,name)
+      arr = self[object_type]
       return true if arr == nil
-      return true if not arr[0].id #if not responds to ID
-      return false if arr.map{|x| x.id.downcase}.include? id.downcase 
+      return true if not arr[0].name #if not responds to name
+      return false if arr.map{|x| x.name.downcase}.include? name.downcase 
       return true
     end
 
-    def exists?(object_name,id)
-      object = self[object_name]
+    # Checks if an object of a certain name and type exist in the model.
+    #
+    # @author Germán Molina    
+    # @param object_type [String] The object type
+    # @param name [String] The name to checking
+    # @return [Boolean] True if it exists, false if not
+    def exists?(object_type,name)
+      object = self[object_type]
       return false if object == nil
       if object.is_a? Array then
         object.each{|obj|
-          return true if obj.id.downcase == id.downcase
+          return true if obj.name.downcase == name.downcase
         }
       else
-        return true if obj.id.downcase == id.downcase
+        return true if obj.name.downcase == name.downcase
       end
       return true
     end
 
-    def delete(object_name,id)
-      if self[object_name].is_a? Array then
-        self[object_name] = self[object_name].select{|x| not x.id.downcase == id.downcase}
+    # Delete an object of a certain type and name.
+    #
+    # @author Germán Molina    
+    # @param object_type [String] The object type
+    # @param name [String] The name to checking    
+    def delete(object_type,name)
+      if self[object_type].is_a? Array then
+        self[object_type] = self[object_type].select{|x| not x.name.downcase == name.downcase}
       else
-        @objects.delete(object_name)
+        @objects.delete(object_type)
       end
     end
 
-
-    def get_geometry_from_file(idf_file, other_options)      
-      all_geometry = EPlusModel::Family.get_family_members("All Geometry")
-      self.add_from_file(idf_file, all_geometry, other_options)
-      return self
-    end
-
-    def set_exterior_windows_construction(construction)
-      exterior_window_objects = EPlusModel::Family.get_family_members("Exterior Windows")
-      exterior_window_objects.each{|object_name|
-        object_array = self[object_name]
-        next if not object_array
-        object_array.each{|object|
-          case object_name.downcase
-          when "fenestrationsurface:detailed"
-            type = object["Surface Type"].downcase
-            base_surface_id = object["Building Surface Name"]
-            base_surface = self.get_object_by_id(base_surface_id)
-            raise "Base surface '#{base_surface_id}' of #{object.name} '#{object.id}' nof found" if not base_surface
-            next if not (type == "window"and base_surface["Outside Boundary Condition"].downcase == "outdoors"  )
-          end
-          object["construction name"] = construction.id
-        }  
-      }
-      return self
-    end
-
-    def set_interior_windows_construction(construction)
-      window_objects = EPlusModel::Family.get_family_members("Interior Windows")
-      window_objects.each{|object_name|
-        object_array = self[object_name]
-        next if not object_array
-        object_array.each{|object|
-          case object_name.downcase
-          when "fenestrationsurface:detailed"
-            type = object["Surface Type"].downcase
-            base_surface_id = object["Building Surface Name"]
-            base_surface = self.get_object_by_id(base_surface_id)
-            raise "Base surface '#{base_surface_id}' of #{object.name} '#{object.id}' nof found" if not base_surface
-            next if not (type == "window"and base_surface["Outside Boundary Condition"].downcase == "surface"  )
-          end
-          object["construction name"] = construction.id
-        }  
-      }
-      return self
-    end
-
-    def set_interior_walls_construction(construction)
-      wall_objects = EPlusModel::Family.get_family_members("Interior Walls")
-      wall_objects.each{|object_name|
-        object_array = self[object_name]
-        next if not object_array
-        object_array.each{|object|
-          case object_name.downcase
-          when "buildingsurface:detailed"
-            type = object["Surface Type"].downcase            
-            next if not (type == "wall"and object["Outside Boundary Condition"].downcase == "surface"  )
-          end
-          object["construction name"] = construction.id
-        }  
-      }
-      return self
-    end
-
-    def set_exterior_walls_construction(construction)
-      wall_objects = EPlusModel::Family.get_family_members("exterior Walls")
-      wall_objects.each{|object_name|
-        object_array = self[object_name]
-        next if not object_array
-        object_array.each{|object|
-          case object_name.downcase
-          when "buildingsurface:detailed"
-            type = object["Surface Type"].downcase                       
-            next if (not type == "wall" and not object["Outside Boundary Condition Object"] == "outdoors")
-          end
-          object["construction name"] = construction.id
-        }  
-      }
-      return self
-    end
-
-    def model_as_storey(options)
-        roof_and_ceiling_objects = EPlusModel::Family.get_family_members("Roof and Ceiling")
-
-        roof_and_ceiling_objects.each{ |object_name|
-            object_array = self[object_name]
-            next if not object_array
-            object_array.each{ |object|
-                # assign the construction                
-                case object_name.downcase
-                when "buildingsurface:detailed"
-                    type = object["Surface Type"].downcase
-                    next if not ["floor", "roof", "ceiling"].include? type
-                    object["Outside Boundary Condition"]="Adiabatic"    
-                    object["Sun Exposure"]="NoSun"
-                    object["Wind Exposure"]="NoWind"        
-                    object.delete "Outside Boundary Condition Object"
-                when "roofceiling:detailed"
-                    object["Outside Boundary Condition"]="Adiabatic"            
-                    object.delete "Outside Boundary Condition Object"
-                when "floor:detailed"
-                    object["Outside Boundary Condition"]="Adiabatic"            
-                    object.delete "Outside Boundary Condition Object"
-                when "ceiling:adiabatic"
-                    warn "'#{obejct.id}' is already adiabatic. Construction was changed anyway."
-                when "floor:adiabatic"
-                    warn "'#{obejct.id}' is already adiabatic. Construction was changed anyway."
-                else
-                    warn "'#{object.id}' could not be made adiabatic because it is a '#{object.name.capitalize}'. Construction was changed anyway."
-                end
-                object["construction name"] = options["assign construction"].id if options
-            }
-        }
-        return self
-    end
-
-    def add_branch_list(name,branch_array)
-            inputs = { "name" => name }
-            branch_array.each_with_index{|branch,index|
-                inputs["Branch #{index+1} Name"]=branch.id
-            }
-            self.add("branchlist",inputs)
-        end
-
-        def add_connector_list(name,connector_array)
-            inputs = { "name" => name }
-            connector_array.each_with_index{|connector,index|
-                inputs["Connector #{index + 1} Object Type"]=connector.name
-                inputs["Connector #{index + 1} name"]=connector.id
-            }
-            self.add("ConnectorList",inputs)
-        end
-
-        def add_splitter(name,inlet_branch,outlet_branch_array)
-            inputs = { "name" => name }
-            inputs["Inlet branch name"] = inlet_branch.id
-            outlet_branch_array.each_with_index{|branch,index|
-                inputs["Outlet Branch #{index+1} Name"] = branch.id
-            }
-            self.add("Connector:Splitter", inputs)
-        end
-
-        def add_mixer(name,outlet_branch,inlet_branch_array)
-            inputs = { "name" => name }
-            inputs["Outlet branch name"] = outlet_branch.id
-            inlet_branch_array.each_with_index{|branch,index|
-                inputs["Inlet Branch #{index+1} Name"] = branch.id
-            }
-            self.add("Connector:Mixer", inputs)
-        end
+    
 
   end #end of class
 

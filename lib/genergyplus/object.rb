@@ -19,7 +19,7 @@ module EPlusModel
         # fills a new object
         #
         # @author Germán Molina
-        # @param type [String] The name of the object type
+        # @param type [String] The object type
         # @return [EnergyPlusObject] the object created... empty
         def initialize(type)
             @type=type
@@ -162,10 +162,10 @@ module EPlusModel
         #
         # @author Germán Molina
         def help
-            puts "!- #{@name}"
+            puts "!- #{@type}"
             puts "!- #{@memo}"
             puts ""
-            puts "#{@name},"
+            puts "#{@type},"
             @fields.each_with_index{|field,index|
                 field.help(index == @fields.length - 1)
             }
@@ -200,7 +200,7 @@ module EPlusModel
         # @author Germán Molina
         # @param file [File] An opened File object to print.
         def print(file)
-            file.puts "#{@name.capitalize},"
+            file.puts "#{@type.capitalize},"
             n = [self.n_used_fields, self.min_fields].max   
                      
             n.times{|index|
@@ -212,6 +212,7 @@ module EPlusModel
 
         # Returns the name of a certain object (i.e. Surfaces have unique names).
         # If the object does not have a name, it will return false.
+        #
         # @return [String / Boolean] The name, if it exists and False if it does not.
         def name
             name = @fields.select{|x| x.name.downcase == "name"}.shift               
@@ -226,7 +227,7 @@ module EPlusModel
         # @author Germán Molina
         # @param type [String] The type to match.
         def verify(type)
-            name.downcase == self.type.downcase            
+            type.downcase == self.type.downcase            
         end
 
     end

@@ -6,14 +6,14 @@ module EPlusModel
             inputs = other_options.clone if other_options
             inputs = Hash.new if not inputs
 
-            id = "#{self.id} - #{object_name}"
-            id = inputs["name"] if inputs.key? "name" 
+            name = "#{self.name} - #{object_name}"
+            name = inputs["name"] if inputs.key? "name" 
             
-            if not EPlusModel.model.unique_id?(object_name,id) then
-                EPlusModel.model.delete(object_name,id)                
+            if not EPlusModel.model.unique_name?(object_name,name) then
+                EPlusModel.model.delete(object_name,name)                
             end                 
 
-            inputs["name"] = id 
+            inputs["name"] = name 
             return inputs
         end
 
@@ -22,10 +22,10 @@ module EPlusModel
             
             inputs = adopt_other_options("people",other_options)
 
-            inputs["zone or zonelist name"] = self.id
+            inputs["zone or zonelist name"] = self.name
             inputs["number of people calculation method"] = calculation_method
-            inputs["number of people schedule name"] = npeople_schedule.id
-            inputs["activity level schedule name"] = activity_schedule.id
+            inputs["number of people schedule name"] = npeople_schedule.name
+            inputs["activity level schedule name"] = activity_schedule.name
 
             case calculation_method.downcase
             when "people/area"
@@ -45,8 +45,8 @@ module EPlusModel
 
             inputs = adopt_other_options("lights",other_options)
 
-            inputs["zone or zonelist name"] = self.id            
-            inputs["schedule name"] = schedule.id
+            inputs["zone or zonelist name"] = self.name           
+            inputs["schedule name"] = schedule.name
             inputs["design level calculation method"] = calculation_method                   
 
             case calculation_method.downcase
@@ -67,8 +67,8 @@ module EPlusModel
 
             inputs = adopt_other_options("electricequipment",other_options)
 
-            inputs["zone or zonelist name"] = self.id            
-            inputs["schedule name"] = schedule.id
+            inputs["zone or zonelist name"] = self.name            
+            inputs["schedule name"] = schedule.name
             inputs["design level calculation method"] = calculation_method                   
 
             case calculation_method.downcase
@@ -89,8 +89,8 @@ module EPlusModel
 
             inputs = adopt_other_options("ZoneInfiltration:DesignFlowRate",other_options)
 
-            inputs["zone or zonelist name"] = self.id              
-            inputs["schedule name"] = schedule.id
+            inputs["zone or zonelist name"] = self.name              
+            inputs["schedule name"] = schedule.name
             inputs["design flow rate calculation method"] = calculation_method                   
 
             case calculation_method.downcase
@@ -115,8 +115,8 @@ module EPlusModel
 
             inputs = adopt_other_options("ZoneVentilation:DesignFlowRate",other_options)
 
-            inputs["zone or zonelist name"] = self.id              
-            inputs["schedule name"] = schedule.id
+            inputs["zone or zonelist name"] = self.name              
+            inputs["schedule name"] = schedule.name
             inputs["design flow rate calculation method"] = calculation_method                   
 
             case calculation_method.downcase
@@ -135,13 +135,13 @@ module EPlusModel
         end
 
         def set_thermal_mass(construction,area, other_options)
-            raise "Fatal:  '#{self.name}' is not a Zone" if not self.verify("zone") #this raises if needed     
+            raise "Fatal:  '#{self.type}' is not a Zone" if not self.verify("zone") #this raises if needed     
 
             inputs = adopt_other_options("InternalMass",other_options)
-            inputs["zone name"] = self.id       
+            inputs["zone name"] = self.name       
             inputs["Surface Area"] = area
-            raise "Fatal: '#{construction.id}' is not a Construction... it is a '#{construction.name}'" if not construction.verify("construction")
-            inputs["Construction Name"] = construction.id
+            raise "Fatal: '#{construction.name}' is not a Construction... it is a '#{construction.type}'" if not construction.verify("construction")
+            inputs["Construction Name"] = construction.name
             EPlusModel.model.add("InternalMass",inputs)
         end
 

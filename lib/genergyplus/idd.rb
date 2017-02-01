@@ -133,7 +133,7 @@ module EPlusModel
         def get_required_objects_list
             required_objects = []
             @data.each{|key,object|                
-                required_objects << object.name if object.required
+                required_objects << object.type if object.required
             }
             return required_objects        
         end
