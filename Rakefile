@@ -14,7 +14,7 @@ end
 
 def get_version
     file = File.readlines(version_file)
-    file[1].split("=").pop.strip
+    file[2].split("=").pop.strip
 end
 
 def increase_version(i)

@@ -1,4 +1,4 @@
 module EPlusModel
-    #Version constant
-    VERSION = '0.1.0'
+    # Version Constant
+    VERSION = '0.1.1'
 end
