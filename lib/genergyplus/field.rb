@@ -94,14 +94,14 @@ module EPlusModel
         # @author Germán Molina
         # @param value [Numeric / String] The value to check 
         # @return [Boolean] is valid
-        def check_value(value)
+        def check_input(value)
             # Check choices
             if @type.is_a? String and @type.downcase == "choice" then
                 raise "Incorrect key in 'choice' field of... '#{value}' was inputed while the options are [#{@keys.join(",")}] " if not @keys.map{|x| x.downcase}.include? value.downcase
             end
 
             #check that it matches value_type (Ax, Nx)
-            type_error = "Fatal: expected value for '#{field.type}' was of kind '#{ field.numeric? ? "Numeric" : "String" }', but a '#{value.class}' was privided"
+            type_error = "Fatal: expected value for '#{self.name}' was of kind '#{ self.numeric? ? "Numeric" : "String" }', but a '#{value.class}' was provided"
             if self.numeric?  then                  
                 # Autosize?
                 autosize = (value.is_a? String and value.strip.downcase == "autosize" and self.autosizable)  
@@ -109,7 +109,7 @@ module EPlusModel
                 autocalculate = (value.is_a? String and value.strip.downcase == "autocalculate" and self.autocalculatable)
 
                 raise type_error if not value.is_a? Numeric unless (autosize or autocalculate)
-                next if autosize or autocalculate
+                return true if autosize or autocalculate
                 
                 range_error = "Fatal: '#{self.type}' value out of range (#{value}) for '#{self.name}'... expected value between #{self.minimum} and #{self.maximum}"
                 raise range_error if (self.minimum and value < self.minimum) or (self.maximum and value > self.maximum)
@@ -124,7 +124,8 @@ module EPlusModel
         # @author Germán Molina
         # @param value [Numeric / String] The value to assigned        
         def set_value(value)
-            self.check_value(value) #this raises if there is an error
+            return if value == nil #not worth assigning it
+            self.check_input(value) #this raises if there is an error
             self.value = value
         end
 
