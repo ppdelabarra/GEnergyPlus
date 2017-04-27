@@ -4,6 +4,8 @@ require_relative "genergyplus/field"
 require_relative "genergyplus/idd"
 require_relative "genergyplus/model"
 require_relative "genergyplus/object"
+require_relative "genergyplus/vector3d"
+
 
 require_relative "genergyplus/generators/zone"
 require_relative "genergyplus/generators/schedules"

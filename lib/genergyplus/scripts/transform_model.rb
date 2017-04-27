@@ -44,6 +44,42 @@ module EPlusModel
             return self
         end
 
+
+        # Select all windows matching an orientation        
+        #
+        # @author Germán Molina    
+        # @param orientation [array] An array of three numbers, representing a 3D Vector
+        # @return [array] array of objects
+        def select_windows_by_orientation(orientation)
+            ret = []
+            exterior_window_objects = EPlusModel::Family.get_family_members("Exterior Windows")
+            exterior_window_objects.each{|object_type|
+                object_array = self[object_type]
+                next if not object_array
+                object_array.each{|object|
+                    case object_type.downcase
+                    when "fenestrationsurface:detailed"
+                        type = object["Surface Type"].downcase
+                        base_surface_name = object["Building Surface Name"]
+                        base_surface = self.get_object_by_name(base_surface_name)
+                        raise "Base surface '#{base_surface_name}' of #{object.name} '#{object.name}' nof found" if not base_surface
+                        next if not (type == "window"and base_surface["Outside Boundary Condition"].downcase == "outdoors"  )
+                    end
+
+                    vertices = []
+                    3.times{|i|
+                        vertices << Vector3d.new(object["vertex #{i+1} x-coordinate"], object["vertex #{i+1} y-coordinate"], object["vertex #{i+1} z-coordinate"])
+                    }
+                    edge1 = vertices[1].substract vertices[0]  
+                    edge2 = vertices[2].substract vertices[1]        
+                    normal = edge1.cross edge2
+                    next if not normal.same_direction? Vector3d.new(orientation[0],orientation[1],orientation[2])
+                    ret << object
+                }  
+            }
+            return ret
+        end
+
         # Assign a construction to all interior window objects        
         #
         # @author Germán Molina    

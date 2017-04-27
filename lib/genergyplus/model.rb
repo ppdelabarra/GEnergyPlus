@@ -276,6 +276,14 @@ module EPlusModel
       end
     end
 
+    # Delete all objects of a certain type
+    #
+    # @author Germán Molina    
+    # @param object_type [String] The object type
+    def delete_all(object_type)
+      @objects.delete(object_type)      
+    end
+
     
 
   end #end of class
