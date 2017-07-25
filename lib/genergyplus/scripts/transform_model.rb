@@ -1,6 +1,37 @@
 module EPlusModel
     class Model
         
+        # Loads the DDY file data
+        #
+        # @param filename [String] the ddy data
+        def add_design_day_data(filename)
+            data = File.readlines(filename)
+            inputs = Hash.new
+            object_type = false
+            data.each{|line|
+                value,comment = line.split("!-").map{|x| x.strip}                
+                value.tr!(",;","")
+                value.strip!
+                next if value == nil or value == ""
+
+                comment = comment.split("{").shift.strip if comment != nil
+                inputs[comment]=value if comment != nil
+                if value.include? "SizingPeriod:DesignDay" or value.include? "Site:Location" then
+                    inputs["name"] = inputs["Location Name"] if object_type == "Site:Location"    
+                    inputs["Time Zone"] = inputs["Time Zone Relative to GMT"]                
+                    inputs["Wetbulb or DewPoint at Maximum Dry-Bulb"] = (inputs["Wetbulb at Maximum Dry-Bulb"] or inputs["Dewpoint at Maximum Dry-Bulb"]) 
+                    inputs["Sky Clearness"] = inputs["Clearness"] or 0
+                    inputs.each{|key,v| inputs[key]=v.to_f if v.is_number?}
+                    self.add(object_type,inputs) if object_type #add the DesignDay
+                    object_type = value
+                    inputs = Hash.new #reset inputs                    
+                end
+
+
+            }
+        end
+        
+
         # Loads all the geometry present on a certain file into the model.
         # It does not import loads, CONSTRUCTIONS, HVAC, or other elements.
         #

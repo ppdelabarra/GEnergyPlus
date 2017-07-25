@@ -20,6 +20,8 @@ module EPlusModel
       return self
     end
 
+  
+    
     # Returns the Input Data Dictionary object of the model.
     #
     # @author Germán Molina

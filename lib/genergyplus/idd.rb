@@ -62,6 +62,8 @@ module EPlusModel
                     content = d.join(" ").strip
                     case flag
                     # These are field flags
+                    when ""
+                        next #ignore
                     when "\\note"
                         @data[object_name].fields[-1].note += content
                         next
@@ -101,6 +103,9 @@ module EPlusModel
                     when "\\reference"
                         @data[object_name].fields[-1].reference = content
                         next     
+                    when "\\reference-class-name"
+                        @data[object_name].fields[-1].reference = content
+                        next         
                     when "\\ip-units"
                         @data[object_name].fields[-1].ip_units = content
                         next         
@@ -138,7 +143,7 @@ module EPlusModel
                         next   
                     else
                         warn ln
-                        raise "Fatal: Unknown flag '#{flag.gsub("\\","")}' when reading '#{file}' IDD file"
+                        raise "Fatal: Unknown flag '#{flag.gsub("\\","")}' when reading '#{object_name}' in #{file}' IDD file"
                     end
                 end
             end                 

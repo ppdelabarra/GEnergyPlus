@@ -143,7 +143,7 @@ module EPlusModel
         # @param schedule [EnergyPlusObject] The schedule that modulates the infiltrations
         # @param other_options [Hash] Some other options that may be provided to the object.
         # @return [EnergyPlusObject] the created object
-        def set_design_flow_rate_infiltration(calculation_method, value, schedule, other_options)
+        def set_design_flow_rate_infiltrationset_design_flow_rate_infiltration(calculation_method, value, schedule, other_options)
             raise "Fatal:  '#{self.name}' is not a Zone" if not self.verify("zone") #this raises if needed     
 
             inputs = adopt_other_options("ZoneInfiltration:DesignFlowRate",other_options)
@@ -192,14 +192,14 @@ module EPlusModel
             when "flow/zone"
                 inputs["design flow rate"] = value
             when "flow/area"
-                inputs["flow rate per zone floor area"] = value 
+                inputs["Flow Rate per Zone Floor Area"] = value 
             when "flow/person"
                 inputs["Flow Rate per Person"] = value 
             when "airchanges/hour"
                 inputs["air changes per hour"] = value
             else
-                raise "Incorrect calculation method '#{calculation_method}' for ZoneInfiltration:DesignFlowRate calculation"
-            end
+                raise "Incorrect calculation method '#{calculation_method}' for ZoneVentilation:DesignFlowRate calculation"
+            end            
             EPlusModel.model.add("ZoneVentilation:DesignFlowRate",inputs) 
         end
 

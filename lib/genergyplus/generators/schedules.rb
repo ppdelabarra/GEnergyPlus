@@ -26,12 +26,35 @@ module EPlusModel
         def self.decimal_to_standard(decimal_time)
             hour = decimal_time.floor
             minute = decimal_time%1
-            return "#{hour}:#{(minute * 60).to_i}"
+            return "#{hour}:#{format('%02d',(minute * 60).to_i)}"
         end
 
     end
 
     class Model
+
+        
+        # Creates a schedule that has a specific value for each
+        # hour of working day. Weekends and holidays are 0.
+        #
+        # @param name [String] the name of the schedule
+        # @param values [Array] An array with 24 values, one for each hour
+        def add_hourly_schedule_with_empty_weekends(name,values)
+            raise "Value for 24 hours of the day are required" if values.length != 24
+            inputs = {"name" => name}
+            inputs["Field 1"] = "Through: 12/31"
+            inputs["Field 2"] = "For: Weekends Holidays"
+            inputs["Field 3"] = "Interpolate: Yes"
+            inputs["Field 4"] = "Until: 24:00, 0.0"
+
+            inputs["Field 5"] = "For: AllOtherDays"
+            inputs["Field 6"] = "Interpolate: Yes"
+
+            values.each_with_index{|value,hour|
+                inputs["Field #{7+hour}"] = "Until: #{EPlusModel::Hours.decimal_to_standard(hour+1)} , #{value}"
+            }
+            self.add("Schedule:Compact",inputs)
+        end
 
         # Adds a Schedule:Constant object to the model, with the
         # inputed value.
@@ -135,6 +158,30 @@ module EPlusModel
 
             EPlusModel.model.add("Schedule:Compact",inputs)
         end
+
+        def add_default_HVAC_schedule(name,early,late)
+            inputs = { "name" => name }                        
+            inputs["Field 1"] = "Through: 12/31"
+            inputs["Field 2"] = "For: Weekends Holidays"
+            inputs["Field 3"] = "Interpolate: Yes"
+            inputs["Field 4"] = "Until: 24:00, 0.0 "
+                        
+            inputs["Field 5"] = "For: AllOtherDays"
+            inputs["Field 6"] = "Interpolate: No"
+            early = EPlusModel::Hours.standard_to_decimal(early)
+            late = EPlusModel::Hours.standard_to_decimal(late)
+                        
+            #before arrival
+            inputs["Field 7"] = "Until: #{EPlusModel::Hours.decimal_to_standard(early)} , 0.0"            
+
+            #before leaving            
+            inputs["Field 8"] = "Until: #{EPlusModel::Hours.decimal_to_standard(late)} , 1.0"            
+            inputs["Field 9"] = "Until: 24:00 , 0.0"
+
+
+            EPlusModel.model.add("Schedule:Compact",inputs)
+        end
+
 
         # Adds a schedule that is a certain value during working days and
         # another during weekends and Holidays.

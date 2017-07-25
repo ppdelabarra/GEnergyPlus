@@ -12,8 +12,8 @@ module EPlusModel
         # @author Germán Molina
         # @param name [String] The name of the field
         # @return [EnergyPlusObjectField] The field
-        def initialize(name)
-            @name = name
+        def initialize(name)            
+            @name = name.split("!").shift.strip #some fields have comments
             @note = ""
             @required = false
             @type = false
